@@ -879,6 +879,16 @@ html.mi-theme-fade body,html.mi-theme-fade .top,html.mi-theme-fade .block,html.m
 @media (min-width:900px){nav.tabs .tab{padding-left:11px;padding-right:11px}}
 .h-sub kbd{color:var(--ink-soft)}
 /* MI-UX1 END */
+/* MI-PROGRESS-CSS START */
+.mi-cont{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;line-height:1.2}
+.mi-cont .mi-cont-k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.mi-cont .mi-cont-t{font-size:15px;font-weight:600}
+.mi-tprog{grid-area:meta;align-self:end;display:flex;align-items:center;gap:8px;margin-top:8px;justify-self:end}
+.mi-tbar{display:inline-block;width:90px;height:5px;border-radius:5px;background:var(--line);overflow:hidden}
+.mi-tbar i{display:block;height:100%;background:var(--accent);border-radius:5px}
+.mi-tnum{font:500 12px/1 var(--font-mono);color:var(--muted)}
+@media (max-width:640px){.mi-tprog{grid-area:auto;justify-self:start}}
+/* MI-PROGRESS-CSS END */
 
 
 /* reset dla samodzielnego pliku */
@@ -1910,6 +1920,7 @@ function initIntro(root){
     b.innerHTML=`<div class="tn">${String(tn).replace(/^[^\p{L}\p{N}]+/u,'')}</div>
       <div class="tt">${tt}</div>
       <div class="td">${meta[t.id][0]}</div><div class="tp">${meta[t.id][1]}</div>`;
+    b.dataset.id=t.id;
     b.onclick=()=>select(t.id);
     grid.appendChild(b);
    });
@@ -2175,14 +2186,14 @@ function initStart(root){
       }else{
         const row=document.createElement('div');row.className='qrow';
         const inp=document.createElement('input');
-        inp.type = z.typ==='num' ? 'number' : 'text';
+        inp.type='text'; if(z.typ==='num'){ inp.inputMode='decimal'; inp.autocomplete='off'; }
         if(z.typ==='text')inp.spellcheck=false;
         inp.setAttribute('aria-label','Twoja odpowiedź');
         const btn=document.createElement('button');btn.type='button';btn.className='go';btn.textContent='Sprawdź';
         const check=()=>{
           if(z.typ==='num'){
             if(inp.value.trim()===''){markBad();return;}
-            if(Number(inp.value)===Number(z.odp))markOK();else markBad();
+            if(miNum(inp.value)===Number(z.odp))markOK();else markBad();
           }else{
             const acc=(Array.isArray(z.odp)?z.odp:[z.odp]).map(norm);
             if(acc.includes(norm(inp.value)))markOK();else markBad();
@@ -6235,10 +6246,10 @@ function cwMkQuiz(list,wrap,prog){
       card.appendChild(opts);
     }else{
       var row=document.createElement('div');row.className='qrow';
-      var inp=document.createElement('input');inp.type=z.typ==='num'?'number':'text';if(z.typ==='text')inp.spellcheck=false;inp.setAttribute('aria-label','Twoja odpowiedź');
+      var inp=document.createElement('input');inp.type='text';if(z.typ==='num'){inp.inputMode='decimal';inp.autocomplete='off';}if(z.typ==='text')inp.spellcheck=false;inp.setAttribute('aria-label','Twoja odpowiedź');
       var btn=document.createElement('button');btn.type='button';btn.className='go';btn.textContent='Sprawdź';
       function check(){
-        if(z.typ==='num'){if(inp.value.trim()===''){bad();return;}(Number(inp.value)===Number(z.odp))?ok():bad();}
+        if(z.typ==='num'){if(inp.value.trim()===''){bad();return;}(miNum(inp.value)===Number(z.odp))?ok():bad();}
         else{var acc=(Array.isArray(z.odp)?z.odp:[z.odp]).map(norm);acc.indexOf(norm(inp.value))>=0?ok():bad();}
       }
       btn.onclick=check;inp.addEventListener('keydown',function(e){if(e.key==='Enter')check();});
@@ -6497,11 +6508,11 @@ function initSprawdzian(root){
         getters.push(function(){return {ok:!!(chosen.v&&chosen.v.ok), given:(chosen.v?chosen.v.t:'(brak odpowiedzi)'), correct:z.opcje[z.poprawna], wyj:z.wyj};});
       }else{
         var row=document.createElement('div');row.className='qrow';
-        var inp=document.createElement('input');inp.type=z.typ==='num'?'number':'text';if(z.typ==='text')inp.spellcheck=false;inp.setAttribute('aria-label','Odpowiedź');
+        var inp=document.createElement('input');inp.type='text';if(z.typ==='num'){inp.inputMode='decimal';inp.autocomplete='off';}if(z.typ==='text')inp.spellcheck=false;inp.setAttribute('aria-label','Odpowiedź');
         row.appendChild(inp);card.appendChild(row);
         getters.push(function(){
           var val=inp.value, ok;
-          if(z.typ==='num'){ ok = val.trim()!=='' && Number(val)===Number(z.odp); }
+          if(z.typ==='num'){ ok = val.trim()!=='' && miNum(val)===Number(z.odp); }
           else { var acc=(Array.isArray(z.odp)?z.odp:[z.odp]).map(norm); ok=acc.indexOf(norm(val))>=0; }
           var corr=Array.isArray(z.odp)?z.odp[0]:z.odp;
           return {ok:ok, given:(val.trim()===''?'(brak odpowiedzi)':val), correct:corr, wyj:z.wyj};
@@ -9190,6 +9201,131 @@ function initArkusze(root){
   show(0);
 }
 
+/* MI-PROGRESS START — zapis odpowiedzi we wszystkich zakładkach + „Kontynuuj” */
+function miNum(s){ s=String(s==null?'':s).trim().replace(/\s+/g,'').replace(',','.').replace(/^−/,'-'); return s===''?NaN:Number(s); }
+var MI_ANS_KEY='mi-ans-v1', MI_LAST_KEY='mi-last';
+var miRestoring=false;
+function miJGet(k,d){ try{ var v=JSON.parse(localStorage.getItem(k)||'null'); return v==null?d:v; }catch(e){ return d; } }
+function miJSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function miAnsPanel(id){ return id==='start'||id==='cwiczenia'||id==='zbior'||ARK_IDS.indexOf(id)>=0; }
+function miCards(panel){
+  return [].slice.call(panel.querySelectorAll('.qcard')).filter(function(c){ return !c.classList.contains('gen-card')&&!c.closest('.gen-card'); });
+}
+function miSig(c){ var q=c.querySelector('.qq'); return (q?q.textContent:'').replace(/\s+/g,' ').trim().slice(0,60); }
+/* migawka stanu zakładki → localStorage */
+function miSnap(id,panel){
+  if(miRestoring) return;
+  var A=miJGet(MI_ANS_KEY,{}), P={q:{},ok:0,tot:0,t:Date.now()}, any=false;
+  miCards(panel).forEach(function(c,i){
+    var fb=c.querySelector('.qfb'), good=!!(fb&&fb.classList.contains('good'));
+    var inp=c.querySelector('.qrow input'), sel=c.querySelector('.qopt.sel'), r=null;
+    if(inp&&inp.value.trim()!=='') r={v:inp.value};
+    else if(sel) r={o:sel.textContent};
+    if(r){ r.ok=good?1:0; r.s=miSig(c); P.q[i]=r; any=true; }
+    P.tot++; if(good) P.ok++;
+  });
+  var ark=[].slice.call(panel.querySelectorAll('input.arkin'));
+  if(ark.length){
+    P.a=ark.map(function(i){ return i.value; });
+    P.tot+=ark.length;
+    ark.forEach(function(i){ if(i.classList.contains('ark-ok')) P.ok++; });
+    if(P.a.some(function(v){ return v.trim()!==''; })) any=true;
+  }
+  if(any) A[id]=P; else delete A[id];
+  miJSet(MI_ANS_KEY,A);
+}
+/* odtworzenie stanu po zbudowaniu zakładki */
+function miRestore(id,panel){
+  var P=miJGet(MI_ANS_KEY,{})[id]; if(!P) return;
+  miRestoring=true;
+  try{
+    var cards=miCards(panel);
+    Object.keys(P.q||{}).forEach(function(k){
+      var c=cards[+k], r=P.q[k]; if(!c||miSig(c)!==r.s) return;
+      if(r.v!=null){
+        var inp=c.querySelector('.qrow input'); if(!inp) return;
+        inp.value=r.v;
+        if(r.ok){ var b=c.querySelector('.qrow button.go'); if(b) b.click(); }
+      }else if(r.o!=null&&r.ok){
+        var o=[].filter.call(c.querySelectorAll('.qopt'),function(x){ return x.textContent===r.o; })[0];
+        if(o) o.click();
+      }
+    });
+    var ark=[].slice.call(panel.querySelectorAll('input.arkin'));
+    if(P.a&&P.a.length===ark.length){
+      ark.forEach(function(i,k){ i.value=P.a[k]||''; });
+      panel.querySelectorAll('.arkq').forEach(function(g){
+        var has=[].some.call(g.querySelectorAll('input.arkin'),function(i){ return i.value.trim()!==''; });
+        if(has){ var b=g.querySelector('.arkbtn.go'); if(b) b.click(); }
+      });
+    }
+  }finally{ miRestoring=false; }
+}
+/* podpięcie zapisu do zakładki (delegacja zdarzeń) */
+function miWatch(id,panel){
+  if(panel.dataset.miWatch) return; panel.dataset.miWatch='1';
+  var tm=null;
+  function later(ms){ clearTimeout(tm); tm=setTimeout(function(){ miSnap(id,panel); },ms); }
+  panel.addEventListener('click',function(e){
+    if(e.target.closest('.qcard button, .qopt, .arkbtn')) later(30);
+  });
+  panel.addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&e.target.matches('.qcard input, input.arkin')) later(30);
+  });
+  panel.addEventListener('input',function(e){
+    if(e.target.matches('.qcard input, input.arkin')) later(900);
+  });
+}
+function miOnBuilt(id,panel){
+  if(!miAnsPanel(id)) return;
+  miRestore(id,panel); miWatch(id,panel);
+}
+/* ostatnie miejsce pracy */
+function miRememberTab(id){
+  if(id==='intro'||id==='nauczyciel') return;
+  miJSet(MI_LAST_KEY,{id:id,t:Date.now()});
+}
+function miCourseTotal(data){
+  var n=0; (data||[]).forEach(function(R){ (R.lekcje||[]).forEach(function(L){ n+=(L.zadania||[]).length; }); }); return n;
+}
+function miLessonTitle(data,lid){
+  var t=null; (data||[]).forEach(function(R){ (R.lekcje||[]).forEach(function(L){ if(L.id===lid) t=L.tytul; }); }); return t;
+}
+/* postęp w liczbach (dla strony startowej i panelu nauczyciela) */
+function miProgressOf(id){
+  if(id==='kurs'){ var s=miJGet('mi-kurs-v1',{}); return {ok:Object.keys(s.done||{}).length, tot:miCourseTotal(typeof KURS_DATA!=='undefined'?KURS_DATA:[])}; }
+  if(id==='kurssql'){ var q=miJGet('mi-kurssql-v1',{}); return {ok:Object.keys(q.done||{}).length, tot:miCourseTotal(typeof KSQL_DATA!=='undefined'?KSQL_DATA.kurs:[])}; }
+  var P=miJGet(MI_ANS_KEY,{})[id]; return P?{ok:P.ok,tot:P.tot}:null;
+}
+/* karta „Kontynuuj” i paski postępu na stronie startowej */
+function miIntroRefresh(){
+  var root=panels&&panels.intro; if(!root||!root.dataset.built) return;
+  var cta=root.querySelector('.hero-cta');
+  if(cta){
+    var old=root.querySelector('#mi-cont'); if(old) old.remove();
+    var last=miJGet(MI_LAST_KEY,null);
+    if(last&&last.id&&TASKS.some(function(t){ return t.id===last.id; })){
+      var label=cleanName(last.id), sub='';
+      if(last.id==='kurs'){ var ks=miJGet('mi-kurs-v1',{}); if(ks.last){ sub=ks.last+' '+(miLessonTitle(KURS_DATA,ks.last)||''); } }
+      if(last.id==='kurssql'){ var qs=miJGet('mi-kurssql-v1',{}); if(qs.last&&typeof KSQL_DATA!=='undefined'){ sub=qs.last+' '+(miLessonTitle(KSQL_DATA.kurs,qs.last)||''); } }
+      var pr=miProgressOf(last.id);
+      if(!sub&&pr&&pr.tot) sub='rozwiązane '+pr.ok+' / '+pr.tot;
+      var b=document.createElement('button'); b.type='button'; b.id='mi-cont'; b.className='go lg mi-cont';
+      b.innerHTML='<span class="mi-cont-k">Kontynuuj</span><span class="mi-cont-t">'+krEsc(label)+(sub?' · '+krEsc(sub.trim()):'')+'</span>';
+      b.onclick=function(){ select(last.id); };
+      cta.insertBefore(b,cta.firstChild);
+      cta.querySelectorAll('button[data-go]').forEach(function(x){ x.classList.remove('go'); x.classList.add('ghost'); });
+    }
+  }
+  root.querySelectorAll('.taskcard[data-id]').forEach(function(card){
+    var pr=miProgressOf(card.dataset.id), el=card.querySelector('.mi-tprog');
+    if(!pr||!pr.tot||!pr.ok){ if(el) el.remove(); return; }
+    if(!el){ el=document.createElement('div'); el.className='mi-tprog'; card.appendChild(el); }
+    var pc=Math.round(100*pr.ok/pr.tot);
+    el.innerHTML='<span class="mi-tbar"><i style="width:'+pc+'%"></i></span><span class="mi-tnum">'+pr.ok+' / '+pr.tot+'</span>';
+  });
+}
+/* MI-PROGRESS END */
 /* ============================================================
    RUCHOMOŚĆ APLIKACJI — nawigacja / motyw
    ============================================================ */
@@ -9345,7 +9481,7 @@ function select(id){
   if(current===id) return;
   const t=TASKS.find(x=>x.id===id);
   const p=panels[id];
-  if(!p.dataset.built){ p.innerHTML=t.render(t); p.dataset.built='1'; if(t.init) t.init(p); postProcessLabs(p); if(ARK_IDS.indexOf(id)>=0) postProcessArkusz(p); }
+  if(!p.dataset.built){ p.innerHTML=t.render(t); p.dataset.built='1'; if(t.init) t.init(p); postProcessLabs(p); if(ARK_IDS.indexOf(id)>=0) postProcessArkusz(p); miOnBuilt(id,p); }
   Object.values(panels).forEach(x=>x.hidden=true); p.hidden=false;
   Object.values(directBtns).forEach(b=>b.setAttribute('aria-selected',b.dataset.id===id?'true':'false'));
   const isArk=ARK_IDS.indexOf(id)>=0;
@@ -9353,6 +9489,7 @@ function select(id){
   dropBtn.innerHTML=(isArk?cleanName(id):'Arkusze maturalne')+' <span aria-hidden="true">▾</span>';
   menu.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',b.dataset.id===id?'true':'false'));
   current=id;
+  miRememberTab(id); if(id==='intro') miIntroRefresh();
   try{location.hash=id;}catch(e){}
   window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
   navReveal(isArk?dropBtn:directBtns[id]);
@@ -9393,10 +9530,14 @@ tb.onclick=()=>{
   const next = now==='dark'?'light':'dark';
   applyTheme(next); try{localStorage.setItem('mi-theme',next);}catch(e){}
 };
+/* MI-CLOUD-SLOT */
 /* start */
-const startId=(location.hash||'').replace('#','');
-select(TASKS.some(t=>t.id===startId)?startId:'intro');
-(function(){ const bt=document.getElementById('mi-boot'); if(bt) bt.remove(); navFade(); navReveal(document.querySelector('#tabs [aria-selected="true"]')); })();
+function miBootApp(){
+  const startId=(location.hash||'').replace('#','');
+  select(TASKS.some(t=>t.id===startId)?startId:'intro');
+  const bt=document.getElementById('mi-boot'); if(bt) bt.remove(); navFade(); navReveal(document.querySelector('#tabs [aria-selected="true"]'));
+}
+if(window.miCloudStart) window.miCloudStart().then(miBootApp,miBootApp); else miBootApp();
 /* dostępność: etykiety dla pól edytorów kodu (CodeMirror) */
 (function(){
   function lab(){ document.querySelectorAll('.CodeMirror textarea:not([aria-label])').forEach(t=>t.setAttribute('aria-label','Edytor kodu')); }
