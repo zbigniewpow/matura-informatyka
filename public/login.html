@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Logowanie — Matura Informatyka · Trener</title>
-<script>(function(){var t=null;try{t=localStorage.getItem('mi-theme');}catch(e){}document.documentElement.setAttribute('data-theme',t||'dark');})();</script>
+<script>(function(){var t=null;try{t=localStorage.getItem('mi-theme');}catch(e){}if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);})();</script>
 <style>
 :root{--bg:#f3f4f9;--surface:#fff;--ink:#161826;--muted:#595d6c;--line:#dcdfeb;--accent:#5d5294;--on-accent:#fff;--bad:#a3333d;--ok:#2f7a4f}
 :root[data-theme="dark"]{--bg:#11121b;--surface:#1b1c29;--ink:#e9e9f2;--muted:#a3a6b8;--line:#2c2e40;--accent:#9184d9;--on-accent:#15141f;--bad:#ff8f99;--ok:#8fd6a8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11121b;--surface:#1b1c29;--ink:#e9e9f2;--muted:#a3a6b8;--line:#2c2e40;--accent:#9184d9;--on-accent:#15141f;--bad:#ff8f99;--ok:#8fd6a8}}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
