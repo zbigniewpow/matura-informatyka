@@ -56,6 +56,51 @@ supabase/admin.sql                — nadanie sobie roli administratora
    - **wpisać ręcznie:** jeden adres w wierszu, opcjonalnie z imieniem i nazwiskiem.
    Import z Classroom przez API jest wyłączony (wymagałby weryfikacji aplikacji przez Google); można go włączyć w konfiguracji (`"classroom": true`).
 
+## Nauka indywidualna (od wersji V70)
+
+Nauczyciel przydziela uczniowi materiał (zakres, klasa, cały rok / semestr / wybrane lekcje, tempo albo termin). Uczeń widzi zakładkę **📅 Mój plan** z kartami lekcji do samodzielnej pracy.
+
+**Aktualizacja istniejącego wdrożenia — raz:**
+1. **Supabase → SQL Editor:** uruchom `supabase/assignments.sql` (tworzy tabelę `assignments` z regułami dostępu). Plik `schema.sql` też ją zawiera, więc nowe wdrożenia nie potrzebują osobnego kroku.
+2. **Uczeń z prywatnym kontem Google (spoza domeny szkoły):** Google Cloud → *Google Auth Platform* → *Audience*: typ **External**, następnie **Publish app** (stan *In production*). Aplikacja używa tylko podstawowych zakresów (`email`, `profile`, `openid`), więc według zasad Google nie wymaga weryfikacji. Dostęp nadal mają tylko adresy dopisane do klas.
+3. Ucznia dodajesz jak zwykle: *Panel nauczyciela → Nowa klasa* (np. „Nauczanie indywidualne”) → *Dodaj uczniów* → jego adres Gmail. Potem w kolumnie **Nauka indywidualna** → **📅 Przydziel**.
+
+**Jak działa:** lekcje otwierają się po kolei; zadania z platformy (kurs Python, Ćwiczenia, Zadania bez komputera, sprawdziany z kodem) zaliczają się automatycznie; „Sprawdź się” wymaga co najmniej 70%; prace pisemne i linki uczeń oddaje w karcie lekcji, a nauczyciel zatwierdza je albo odsyła do poprawy z komentarzem. Treści gotowe dla wszystkich klas: zakres podstawowy (klasy 1–3) i rozszerzony (klasy 1–4). W klasach 2–4 kroki z Kursu SQL, Kursu Excel, „Excel na maturze” i arkuszy w trybie egzaminu też zaliczają się automatycznie.
+
+**Tryb planu (od V72):** uczeń z przydziałem widzi uproszczone menu (Start, Mój plan, Do powtórki, Sprawdzian), na stronie startowej kartę bieżącej lekcji z przyciskiem „Kontynuuj”, a w innych zakładkach pasek „← Wróć do planu”. Przyciskiem „☰ Wszystkie moduły” może w każdej chwili wrócić do pełnego menu; wybór zapamiętuje przeglądarka.
+
+## Lekcja na dziś — scenariusze w panelu nauczyciela (od wersji V73; udostępnianie i wyniki klasy od V74)
+
+W każdej klasie przycisk **📘 Lekcja na dziś**. Przy pierwszym otwarciu wybierasz rozkład (zakres podstawowy klasy 1–3 albo rozszerzony klasy 1–4). Potem panel pokazuje kolejną lekcję ze scenariuszy: cele, przebieg z minutami, różnicowanie, sprawdzenie i pracę domową, a obok materiały z przyciskami **Otwórz →**, które przenoszą prosto do właściwego miejsca platformy (z paskiem „← Wróć do scenariusza”).
+
+- **✓ Zrealizowana dziś** zapisuje datę i przechodzi do następnej lekcji; **Cofnij** zdejmuje oznaczenie. Jeśli zaczynasz w trakcie roku, przejdź do bieżącej lekcji i kliknij „Oznacz lekcje 1–… jako zrealizowane”.
+- **🔑 Utwórz kod sprawdzianu** — kod z zakresem, liczbą pytań i czasem ze scenariusza.
+- **⛶ Na ekran** — temat, cele, kod sprawdzianu i praca domowa dużą czcionką na projektor.
+- **📋 Kopiuj temat** — do wpisania w dzienniku; **⬇ Realizacja (CSV)** — wszystkie lekcje z datami realizacji i wymaganiami podstawy programowej.
+- **📤 Udostępnij uczniom** — uczniowie klasy zobaczą na stronie startowej kartę „📘 Dziś na lekcji”: kroki lekcji z przyciskami „Otwórz →” (zadania z platformy odhaczają się same) i pracę domową. **Wycofaj** zdejmuje kartę. Wymaga tabeli z pliku `supabase/assignments.sql` (tej samej co nauka indywidualna); plan indywidualny ucznia zostaje nienaruszony.
+- **📋 Zadanie do Classroom** (od V75) — wybierasz termin, a aplikacja układa tytuł i instrukcje zadania: temat, zadania z platformy z numerami, pracę domową ze scenariusza, termin i link do aplikacji. Kopiujesz je do Classroom (*Zadania → Utwórz → Projekt*); Classroom powiadamia uczniów i przypomina o terminie, a wykonanie zadań widzisz w „Wynikach klasy”.
+- **📊 Wyniki klasy w tej lekcji** — tabela: każdy uczeń × zadania tej lekcji sprawdzane automatycznie (kursy z „Przewidź wynik”, Ćwiczenia, Zadania bez komputera, Excel na maturze, tryb egzaminu) oraz ocena ze sprawdzianu z kodem utworzonym w scenariuszu; w stopce — ilu uczniów zrobiło każde zadanie. Przycisk „⟳ Odśwież wyniki” pobiera najnowsze dane.
+- Realizacja zapisuje się na koncie nauczyciela (synchronizacja jak postęp uczniów) — każdy nauczyciel ma własną, osobno dla każdej klasy. Nie wymaga zmian w Supabase.
+
+## Krótkie sesje i tryb telefonu (od wersji V76)
+
+- **⚡ 10 minut** — na stronie startowej karta „Masz 10 minut?”. Jeden przycisk składa sesję: do 4 pytań z powtórek, nowe pytania z bieżącego tematu, jedno „🔮 Przewidź wynik” i jedno zadanie na koniec (z planu ucznia albo kolejne z kursu Python). Pytania po kolei, pasek postępu, podsumowanie.
+- **Czas przy krokach** — w planie nauki i w karcie „Dziś na lekcji” każdy krok ma szacowany czas (np. „~6 min”), a lekcja planu — łączny czas.
+- **Teoria w pigułce** — każdy z 15 działów Teorii zaczyna się ramką „🧠 3 rzeczy do zapamiętania”; sekcje są zwinięte (pierwsza otwarta), a przykłady odsłaniają się krok po kroku.
+- **Tryb telefonu** — na telefonie strona startowa pokazuje kafelki do krótkiej nauki (10 minut, prawda/fałsz, powtórki, słowniczek) i instrukcję dodania aplikacji do ekranu głównego; w kursach i edytorach pojawia się podpowiedź, że to lepiej robić na komputerze. Pliki `manifest.webmanifest`, `icon-192.png` i `icon-512.png` są dostępne bez logowania (bramka je przepuszcza), żeby ikona na ekranie głównym działała. Skrót otwiera aplikację w zwykłej przeglądarce, więc logowanie Google działa tak jak zawsze.
+- **Limit powtórek** — „Do powtórki” pokazuje dziennie najwyżej 10 pytań (do zmiany: 5, 10, 20, wszystkie). Po limicie: „Na dziś wystarczy!” z możliwością dobrania kolejnych 10. Plakietka w menu liczy tylko dzisiejszą porcję.
+
+## Prostsze teksty (od wersji V77–V78)
+
+Bez zmian w Supabase i w Netlify — wystarczy wgrać nowe pliki.
+
+- **Krótkie wstępy** — na górze zakładek (Od zera, Ćwiczenia, Do powtórki, Sprawdzian, Teoria, Bez komputera, Excel na maturze, Zbiór CKE, edytory, Słowniczek, arkusze) jest teraz 1–2 zdania; pełny opis jest pod „Więcej ▾”. W arkuszach notka o sprawdzeniu odpowiedzi jest zwinięta („Skąd wiadomo, że odpowiedzi są dobre?”).
+- **Mówimy do ucznia** — cele w Kursie Excela i w „Moim planie” są w 2. osobie („W tej lekcji wpisujesz formuły…” zamiast „Po lekcji uczeń wpisuje…”). W panelu nauczyciela cele zostają w formie dla nauczyciela.
+- **Formy neutralne** — komunikaty typu „odpowiedziałeś”, „Utknąłeś?”, „Gotowy?” zastąpione formami, które pasują do każdego ucznia.
+- **Polecenia na kroki (V78)** — 45 dłuższych poleceń w Kursie Excela (kilka komórek do wypełnienia) ma teraz krótki wstęp i ponumerowane kroki: „1. W kolumnie B… 2. W G7…”. Treść i sprawdzanie się nie zmieniły.
+- **„W skrócie” w Teorii (V78)** — każda z 83 sekcji Teorii do matury zaczyna się jednym zdaniem „W skrócie: …”, widocznym także wtedy, gdy sekcja jest zwinięta.
+- Wersja angielska dostała odpowiedniki tych zmian.
+
 ## Ograniczenia
 
 - **Darmowy plan Supabase** usypia projekt po ok. 7 dniach bez ruchu (ferie, wakacje). Przywracasz go jednym kliknięciem w panelu Supabase; dane zostają.
