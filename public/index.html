@@ -1722,7 +1722,79 @@ details.tx-more>p,details.tx-more>div{margin-top:0}
 .mp-tgrid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
 .mp-tchip{font-size:12.5px;border-radius:999px;padding:3px 10px;border:1px solid var(--line,#ddd);border-left-width:5px}
 .mp-tchip.st-ok{border-left-color:#2f9e6a}.mp-tchip.st-prog{border-left-color:#d79a1f}.mp-tchip.st-weak{border-left-color:#d0485a}.mp-tchip.st-none{border-left-color:#b9b6c8}
+.mp-tabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:color-mix(in srgb,var(--muted) 12%,transparent);margin:0 0 14px;width:fit-content;max-width:100%;overflow-x:auto}
+.mp-tab{border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:7px 14px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.mp-tab.on{background:var(--card,#fff);color:var(--ink,inherit);box-shadow:0 1px 3px rgba(30,20,80,.12)}
+.mp-new{color:#d0485a}
+.mp-diag-s{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.mp-groups{display:flex;flex-direction:column;gap:10px}
+.mp-grp{padding:0;overflow:hidden}
+.mp-grp>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:13px 16px;font-weight:600;font-size:15px}
+.mp-grp>summary::-webkit-details-marker{display:none}
+.mp-grp>summary::after{content:'▾';margin-left:auto;color:var(--muted)}
+.mp-grp[open]>summary::after{content:'▴'}
+.mp-grp .mp-dot{margin-right:0}
+.mp-gn{color:var(--muted);font-weight:500}
+.mp-list{display:flex;flex-direction:column;border-top:1px solid var(--line,#e4e1ef)}
+.mp-row{display:grid;grid-template-columns:30px minmax(0,1fr) 110px 42px 14px;gap:10px;align-items:center;border:0;border-bottom:1px solid var(--line,#e4e1ef);background:none;color:inherit;font:inherit;text-align:left;padding:11px 16px;cursor:pointer}
+.mp-row:last-child{border-bottom:0}
+.mp-row:hover{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.mp-row .mp-ti{font-size:20px;grid-row:auto}
+.mp-rn{font-size:14.5px;font-weight:500}
+.mp-err{font-size:12px;color:#d0485a;font-weight:600;white-space:nowrap}
+.mp-pct{font-size:13px;color:var(--muted);text-align:right}
+.mp-go{color:var(--muted);font-size:18px}
+.mp-row.st-ok .mp-bar i{background:#2f9e6a}.mp-row.st-prog .mp-bar i{background:#d79a1f}.mp-row.st-weak .mp-bar i{background:#d0485a}
+.mp-sheet-wrap{position:fixed;inset:0;z-index:80}
+.mp-sheet-on #ind-bar,.mp-sheet-on #bit-toast{display:none!important}
+.mp-sheet-bg{position:absolute;inset:0;background:rgba(20,15,45,.35)}
+.mp-sheet{position:absolute;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg,#f6f5fb);color:var(--ink,inherit);padding:18px 20px;overflow-y:auto;box-shadow:-10px 0 30px rgba(20,15,45,.2)}
+.mp-sh-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.mp-sh-h h3{margin:0}
+.mp-sheet .mp-chip{margin-left:0}
+.mp-sh-b{display:flex;flex-direction:column;gap:8px;margin-top:8px}.mp-sh-b button{width:100%;text-align:left}
+.vz-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px}
+.vz-gi{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--card,#fff);border:1px solid var(--line,#e4e1ef);border-radius:14px;padding:14px;cursor:pointer;color:inherit;font:inherit}
+.vz-gi b{font-size:15px}.vz-gi span{font-size:13px;color:var(--muted);line-height:1.45}
+.vz-gi:hover{border-color:var(--accent)}
+@media (max-width:700px){
+ .mp-row{grid-template-columns:26px minmax(0,1fr) 54px 14px;padding:11px 12px}
+ .mp-tabs{width:100%}.mp-tab{flex:1;padding:7px 6px;font-size:13px}
+ .mp-row .mp-bar{display:none}
+ .mp-sheet{top:auto;left:0;right:0;width:100%;max-height:82vh;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(20,15,45,.2);padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+}
 /* MI-MAP-CSS END */
+/* MI-TD-CSS */
+body.td-on #ind-intro,body.td-on #bit-hello,body.td-on.ind-focus #fx-quick,body.td-on.ind-focus #panel-intro .hero{display:none!important}
+.td-card{border-left:4px solid var(--accent)}
+.td-voice{display:flex;gap:12px;align-items:center;margin-bottom:10px}.td-voice .bit-bub{flex:1}
+.td-head h3{margin:4px 0 10px;font-size:19px}
+.td-card .td-list{list-style:none;margin:0!important;padding:0!important;display:flex;flex-direction:column;gap:6px}
+.td-it{display:flex;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line,#e4e1ef);border-radius:12px;background:var(--card,#fff)}
+.td-chev{color:var(--muted);font-size:20px;line-height:1}.td-it.now .td-chev{color:var(--accent)}
+.td-click{cursor:pointer}.td-click:hover{border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.td-it.now{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.td-it.done{opacity:.6}.td-it.done .td-tx{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.td-ck{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:color-mix(in srgb,var(--muted) 15%,transparent);color:var(--muted)}
+.td-it.now .td-ck{background:var(--accent);color:#fff}.td-it.done .td-ck{background:#2f9e6a;color:#fff}
+.td-tx{flex:1;min-width:0;font-size:14.5px;line-height:1.4}.td-tx small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.td-foot{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.td-meta{font-size:13.5px;color:var(--muted)}
+.td-week{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line,#e4e1ef);font-size:13.5px;color:var(--muted)}
+.td-dots{display:flex;gap:5px}.td-dots i{font-style:normal;font-size:11px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line,#ddd)}
+.td-dots i.on{background:#2f9e6a;border-color:#2f9e6a;color:#fff}.td-dots i.today{border-color:var(--accent)}
+#td-bn{display:none}
+@media (max-width:700px){
+ body.bn-on{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+ body.bn-on #td-bn{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--card,#fff);border-top:1px solid var(--line,#e4e1ef);box-shadow:0 -4px 16px rgba(30,20,80,.08);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
+ #td-bn button{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;border:0;background:none;color:var(--muted);font:inherit;font-size:11px;padding:6px 2px;border-radius:10px;cursor:pointer}
+ #td-bn button svg{width:22px;height:22px}
+ #td-bn button.on{color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 9%,transparent)}
+ #td-bn .td-bdg{position:absolute;top:2px;left:calc(50% + 6px);min-width:17px;height:17px;border-radius:9px;background:#c0602a;color:#fff;font-size:10.5px;display:grid;place-items:center;padding:0 4px}
+ body.bn-on #ind-bar{bottom:calc(72px + env(safe-area-inset-bottom))}
+ body.bn-on #bit-toast{bottom:calc(76px + env(safe-area-inset-bottom))}
+ body.bn-on .fx-pbar{bottom:calc(72px + env(safe-area-inset-bottom))}
+}
+/* MI-TD-CSS END */
 
 /* reset dla samodzielnego pliku */
 html{-webkit-text-size-adjust:100%}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}
@@ -14605,50 +14677,80 @@ function mpSesEnd(host){
       '<div class="pill-row"><button type="button" class="go mp-again">'+mpT('Jeszcze 5 pytań','5 more questions')+'</button><button type="button" class="ghost mp-back">'+mpT('Wróć do mapy','Back to the map')+'</button></div></div>';
   }
   MP_SES=null; host.innerHTML=h;
-  var b=host.querySelector('.mp-back'); if(b) b.onclick=function(){ mpRender(); window.scrollTo({top:0}); };
+  var b=host.querySelector('.mp-back'); if(b) b.onclick=function(){ MP_TAB='map'; mpRender(); window.scrollTo({top:0}); };
   var a=host.querySelector('.mp-again'); if(a) a.onclick=function(){ mpSesStart('ses',S.tid); };
 }
-/* --- widok mapy --- */
-var MP_OPEN=null, MP_VIS=null;
+/* --- widok mapy: trzy zakładki (Mapa · Test na start · Krok po kroku), działy w grupach, szczegóły w panelu --- */
+var MP_OPEN=null, MP_VIS=null, MP_TAB='map', MP_GOPEN=null;
 function mpStLabel(st){ return {ok:mpT('opanowane','mastered'), prog:mpT('w toku','in progress'), weak:mpT('do poprawy','needs work'), none:mpT('nie zaczęte','not started')}[st]; }
+function mpGrpLabel(st){ return {weak:mpT('Do poprawy','Needs work'), prog:mpT('W toku','In progress'), ok:mpT('Opanowane','Mastered'), none:mpT('Nie zaczęte','Not started')}[st]; }
+function mpTabs(dg){
+  var T=[['map',mpT('Mapa','Map')],['test',mpT('Test na start','Starting test')+(dg?'':' <span class="mp-new">•</span>')],['vis',mpT('Krok po kroku','Step by step')]];
+  return '<div class="mp-tabs" role="tablist">'+T.map(function(t){ return '<button type="button" role="tab" class="mp-tab'+(MP_TAB===t[0]?' on':'')+'" aria-selected="'+(MP_TAB===t[0])+'" data-tab="'+t[0]+'">'+t[1]+'</button>'; }).join('')+'</div>';
+}
 function mpRender(){
   var P=typeof panels!=='undefined'&&panels.mapa; if(!P) return;
   var host=P.querySelector('#mp-root'); if(!host) return;
   if(!mpOn()){ host.innerHTML='<div class="block"><p>'+mpT('Mapa opanowania jest częścią nauki indywidualnej — pojawi się, gdy nauczyciel przydzieli Ci plan.','The mastery map is part of individual study — it appears when your teacher assigns you a plan.')+'</p></div>'; return; }
   if(MP_SES) return mpSesRender(host);
   if(MP_VIS) return vzRender(host,MP_VIS);
-  var C=mpCalc(mpG()), T=mpTopics(), dg=C._dg, h='';
-  if(!dg) h+='<div class="block mp-diag"><div><b>'+mpT('🧭 Test na start','🧭 Starting test')+'</b><span class="h-sub">'+T.length+mpT(' pytań, po jednym z każdego działu — ok. 15 minut. Sprawdzi, co już umiesz; wynik zobaczy też nauczyciel.',' questions, one from each topic — about 15 minutes. It checks what you already know; your teacher sees the result too.')+'</span></div><button type="button" class="go mp-dgo">'+mpT('Zacznij test','Start the test')+'</button></div>';
-  else h+='<p class="h-sub mp-dline">'+mpT('Test na start: ','Starting test: ')+'<b>'+dg.ok+' / '+dg.n+'</b> · <button type="button" class="linkbtn mp-dgo">'+mpT('powtórz test','retake the test')+'</button></p>';
-  var weak=T.filter(function(t){ return C[t.id].st==='weak'; }).sort(function(a,b){ return C[b.id].err-C[a.id].err; })[0]
-    || (dg?T.filter(function(t){ return C[t.id].dg&&!C[t.id].dg.o&&C[t.id].st!=='ok'; })[0]:null);
-  if(weak) h+='<div class="block mp-rec"><span>'+mpT('Proponuję zacząć od: ','I suggest starting with: ')+'<b>'+mpE(weak.ic+' '+mpName(weak))+'</b>'+(C[weak.id].err?' — '+C[weak.id].err+' '+mpPl(C[weak.id].err,mpT('pytanie z błędem czeka','question with a mistake is waiting'),mpT('pytania z błędem czekają','questions with mistakes are waiting'),mpT('pytań z błędem czeka','questions with mistakes are waiting'))+mpT(' na poprawę.','.'):'')+'</span><button type="button" class="go sm" data-ses="'+weak.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button></div>';
-  h+='<div class="mp-legend"><span class="mp-dot ok"></span>'+mpStLabel('ok')+'<span class="mp-dot prog"></span>'+mpStLabel('prog')+'<span class="mp-dot weak"></span>'+mpStLabel('weak')+'<span class="mp-dot none"></span>'+mpStLabel('none')+'</div>';
-  h+='<div class="mp-grid">'+T.map(function(t){ var c=C[t.id];
-    return '<button type="button" class="mp-tile st-'+c.st+(MP_OPEN===t.id?' on':'')+'" data-t="'+t.id+'"><span class="mp-ti">'+t.ic+'</span><span class="mp-tn">'+mpE(mpName(t))+'</span><span class="mp-ts">'+mpStLabel(c.st)+(c.err?' · '+c.err+' ✗':'')+'</span><span class="mp-bar"><i style="width:'+c.pct+'%"></i></span></button>'; }).join('')+'</div>';
-  if(MP_OPEN){ var t=MP_T.filter(function(x){ return x.id===MP_OPEN; })[0], c=C[MP_OPEN];
-    if(t){ h+='<div class="block mp-det"><h3>'+t.ic+' '+mpE(mpName(t))+' <span class="mp-chip st-'+c.st+'">'+mpStLabel(c.st)+'</span></h3><ul class="mp-facts">'+
-      (c.q.tot?'<li>'+mpT('Pytania: ','Questions: ')+'<b>'+c.q.ok+' / '+c.q.tot+'</b>'+mpT(' rozwiązane dobrze',' answered correctly')+'</li>':'')+
-      (c.crs.tot?'<li>'+mpT('Zadania w kursie: ','Course tasks: ')+'<b>'+c.crs.done+' / '+c.crs.tot+'</b></li>':'')+
-      (c.err?'<li>'+mpT('Do poprawy: ','To fix: ')+'<b>'+c.err+'</b> '+mpPl(c.err,mpT('pytanie z błędem','question with a mistake'),mpT('pytania z błędem','questions with mistakes'),mpT('pytań z błędem','questions with mistakes'))+'</li>':'')+
-      (c.dg?'<li>'+mpT('Test na start: ','Starting test: ')+(c.dg.o?mpT('✓ dobrze','✓ correct'):mpT('✗ błąd','✗ wrong'))+'</li>':'')+'</ul><div class="pill-row">'+
-      (mpRefs(t).length?'<button type="button" class="go sm" data-ses="'+t.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button>':'')+
-      ((t.tm||[]).length?'<button type="button" class="ghost sm" data-tm="'+t.tm[0]+'">'+mpT('📖 Teoria','📖 Theory')+'</button>':'')+
-      (t.kurs?'<button type="button" class="ghost sm" data-go="kurs">'+mpT('💻 Kurs Python','💻 Python course')+'</button>':'')+
-      (t.sql?'<button type="button" class="ghost sm" data-go="kurssql">'+mpT('💻 Kurs SQL','💻 SQL course')+'</button>':'')+
-      (t.kx?'<button type="button" class="ghost sm" data-go="kursxl">'+mpT('💻 Kurs Excela','💻 Excel course')+'</button>':'')+
-      (t.vis||[]).map(function(v){ return '<button type="button" class="ghost sm" data-vis="'+v+'">🔍 '+mpE(vzName(v))+'</button>'; }).join('')+'</div></div>'; } }
-  h+='<div class="block mp-vis"><h3>'+mpT('🔍 Krok po kroku','🔍 Step by step')+'</h3><p class="h-sub">'+mpT('Algorytm rozpisany na kroki: wpisz własne dane i przechodź strzałkami.','An algorithm split into steps: enter your own data and move with the arrows.')+'</p><div class="pill-row">'+
-    VZ_LIST.map(function(v){ return '<button type="button" class="ghost sm" data-vis="'+v+'">'+mpE(vzName(v))+'</button>'; }).join('')+'</div></div>';
+  var C=mpCalc(mpG()), T=mpTopics(), dg=C._dg, h=mpTabs(dg);
+  if(MP_TAB==='test'){
+    if(!dg) h+='<div class="block mp-diag"><div><b>'+mpT('📝 Test na start','📝 Starting test')+'</b><span class="h-sub">'+T.length+mpT(' pytań, po jednym z każdego działu — ok. 15 minut. Sprawdzi, co już umiesz; wynik zobaczy też nauczyciel. Jeśli czegoś nie wiesz, kliknij „Nie wiem” — to też dobra informacja.',' questions, one from each topic — about 15 minutes. It checks what you already know; your teacher sees the result too. If you don’t know something, click “I don’t know” — that is useful too.')+'</span></div><button type="button" class="go mp-dgo">'+mpT('Zacznij test','Start the test')+'</button></div>';
+    else { var good=T.filter(function(t){ return dg.r&&dg.r[t.id]&&dg.r[t.id].o; }).map(mpName), bad=T.filter(function(t){ return dg.r&&dg.r[t.id]&&!dg.r[t.id].o; }).map(mpName);
+      h+='<div class="block mp-end"><span class="eyebrow">'+mpT('ostatni wynik','last result')+'</span><h3>'+dg.ok+' / '+dg.n+'</h3>'+(good.length?'<p><b>'+mpT('Umiesz: ','You know: ')+'</b>'+mpE(good.join(', '))+'</p>':'')+(bad.length?'<p><b>'+mpT('Do nauki: ','To learn: ')+'</b>'+mpE(bad.join(', '))+'</p>':'')+
+        '<div class="pill-row"><button type="button" class="ghost mp-dgo">'+mpT('Powtórz test','Retake the test')+'</button><button type="button" class="go" data-tab="map">'+mpT('Zobacz mapę →','See the map →')+'</button></div></div>'; }
+  } else if(MP_TAB==='vis'){
+    var D={sort:mpT('Bąbelkowe, przez wstawianie i przez wybieranie — porównania i zamiany na słupkach.','Bubble, insertion and selection sort — comparisons and swaps on bars.'), bin:mpT('Jak lo, mid i hi zawężają przedział o połowę.','How lo, mid and hi halve the range.'), rek:mpT('Drzewo wywołań fib, silni i szybkiej potęgi — wywołanie po wywołaniu.','Call tree of fib, factorial and fast power — call by call.'), bst:mpT('Wstawianie kluczy i przejścia pre-, in- i postorder.','Inserting keys and pre-, in- and postorder traversals.'), heap:mpT('Wstawianie do kopca max i zamiany w górę.','Inserting into a max-heap and swapping up.'), ip:mpT('Adres AND maska: sieć, rozgłoszeniowy i liczba hostów.','Address AND mask: network, broadcast and number of hosts.'), sys:mpT('Dzielenie z resztą i czytanie reszt od dołu.','Division with remainder and reading the remainders bottom-up.')};
+    h+='<div class="vz-gal">'+VZ_LIST.map(function(v){ return '<button type="button" class="vz-gi" data-vis="'+v+'"><b>'+mpE(vzName(v))+'</b><span>'+mpE(D[v]||'')+'</span></button>'; }).join('')+'</div>';
+  } else {
+    if(!dg) h+='<div class="block mp-diag mp-diag-s"><span>'+mpT('📝 Zacznij od testu na start — mapa od razu pokaże, co już umiesz.','📝 Start with the starting test — the map will show right away what you already know.')+'</span><button type="button" class="go sm mp-dgo">'+mpT('Zacznij test','Start the test')+'</button></div>';
+    var weak=T.filter(function(t){ return C[t.id].st==='weak'; }).sort(function(a,b){ return C[b.id].err-C[a.id].err; })[0]||(dg?T.filter(function(t){ return C[t.id].dg&&!C[t.id].dg.o&&C[t.id].st!=='ok'; })[0]:null);
+    if(weak) h+='<div class="block mp-rec"><span>'+mpT('Proponuję zacząć od: ','I suggest starting with: ')+'<b>'+mpE(weak.ic+' '+mpName(weak))+'</b>'+(C[weak.id].err?' — '+C[weak.id].err+' '+mpPl(C[weak.id].err,mpT('pytanie z błędem czeka','question with a mistake is waiting'),mpT('pytania z błędem czekają','questions with mistakes are waiting'),mpT('pytań z błędem czeka','questions with mistakes are waiting'))+mpT(' na poprawę.','.'):'')+'</span><button type="button" class="go sm" data-ses="'+weak.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button></div>';
+    var G={weak:[],prog:[],ok:[],none:[]}; T.forEach(function(t){ G[C[t.id].st].push(t); });
+    var first=['weak','prog','none','ok'].filter(function(k){ return G[k].length; })[0];
+    h+='<div class="mp-groups">'+['weak','prog','ok','none'].filter(function(k){ return G[k].length; }).map(function(k){
+      var open=MP_GOPEN?MP_GOPEN[k]:k===first;
+      return '<details class="block mp-grp st-'+k+'" data-g="'+k+'"'+(open?' open':'')+'><summary><span class="mp-dot '+k+'"></span>'+mpGrpLabel(k)+' <span class="mp-gn">'+G[k].length+'</span></summary><div class="mp-list">'+
+        G[k].map(function(t){ var c=C[t.id]; return '<button type="button" class="mp-row st-'+c.st+'" data-t="'+t.id+'"><span class="mp-ti">'+t.ic+'</span><span class="mp-rn">'+mpE(mpName(t))+(c.err?' <span class="mp-err">'+c.err+' ✗</span>':'')+'</span><span class="mp-bar"><i style="width:'+c.pct+'%"></i></span><span class="mp-pct">'+c.pct+'%</span><span class="mp-go" aria-hidden="true">›</span></button>'; }).join('')+'</div></details>'; }).join('')+'</div>';
+  }
   host.innerHTML=h;
-  host.querySelectorAll('.mp-tile').forEach(function(b){ b.onclick=function(){ MP_OPEN=MP_OPEN===b.dataset.t?null:b.dataset.t; mpRender(); var d=host.querySelector('.mp-det'); if(d&&d.scrollIntoView) d.scrollIntoView({block:'nearest'}); }; });
+  host.querySelectorAll('[data-tab]').forEach(function(b){ b.onclick=function(){ MP_TAB=b.dataset.tab; mpRender(); }; });
+  host.querySelectorAll('.mp-grp>summary').forEach(function(sm){ sm.addEventListener('click',function(){ setTimeout(function(){ MP_GOPEN=MP_GOPEN||{}; host.querySelectorAll('.mp-grp').forEach(function(x){ MP_GOPEN[x.dataset.g]=x.open; }); },0); }); });
+  host.querySelectorAll('.mp-row').forEach(function(b){ b.onclick=function(){ mpSheet(b.dataset.t); }; });
   host.querySelectorAll('.mp-dgo').forEach(function(b){ b.onclick=function(){ mpSesStart('diag'); }; });
   host.querySelectorAll('[data-ses]').forEach(function(b){ b.onclick=function(){ mpSesStart('ses',b.dataset.ses); }; });
-  host.querySelectorAll('[data-tm]').forEach(function(b){ b.onclick=function(){ tmOpen(b.dataset.tm); }; });
-  host.querySelectorAll('[data-go]').forEach(function(b){ b.onclick=function(){ select(b.dataset.go); }; });
   host.querySelectorAll('[data-vis]').forEach(function(b){ b.onclick=function(){ MP_VIS=b.dataset.vis; mpRender(); window.scrollTo({top:0}); }; });
 }
-function mpHTML(){ return '<div class="lead"><span class="eyebrow">'+mpT('nauka indywidualna','individual study')+'</span><h2 class="h-task">'+mpT('🧭 Mapa opanowania','🧭 Mastery map')+'</h2><p class="h-sub">'+mpT('Co już umiesz, a co warto poćwiczyć — z Twoich odpowiedzi w całej aplikacji.','What you already know and what to practise — based on your answers across the app.')+'</p></div><div id="mp-root"></div>'; }
+/* szczegóły działu: panel z boku (komputer) albo arkusz od dołu (telefon) */
+function mpSheetClose(){ var o=document.getElementById('mp-sheet'); if(o) o.remove(); document.documentElement.classList.remove('mp-sheet-on'); MP_OPEN=null; }
+function mpSheet(tid){
+  mpSheetClose(); var t=MP_T.filter(function(x){ return x.id===tid; })[0]; if(!t) return; MP_OPEN=tid;
+  var c=mpCalc(mpG())[tid];
+  var o=document.createElement('div'); o.id='mp-sheet'; o.className='mp-sheet-wrap';
+  o.innerHTML='<div class="mp-sheet-bg"></div><div class="mp-sheet" role="dialog" aria-modal="true" aria-label="'+mpE(mpName(t))+'"><div class="mp-sh-h"><h3>'+t.ic+' '+mpE(mpName(t))+'</h3><button type="button" class="bit-x mp-sh-x" aria-label="'+mpT('Zamknij','Close')+'">✕</button></div>'+
+    '<p><span class="mp-chip st-'+c.st+'">'+mpStLabel(c.st)+'</span></p><ul class="mp-facts">'+
+    (c.q.tot?'<li>'+mpT('Pytania: ','Questions: ')+'<b>'+c.q.ok+' / '+c.q.tot+'</b>'+mpT(' rozwiązane dobrze',' answered correctly')+'</li>':'')+
+    (c.crs.tot?'<li>'+mpT('Zadania w kursie: ','Course tasks: ')+'<b>'+c.crs.done+' / '+c.crs.tot+'</b></li>':'')+
+    (c.err?'<li>'+mpT('Do poprawy: ','To fix: ')+'<b>'+c.err+'</b> '+mpPl(c.err,mpT('pytanie z błędem','question with a mistake'),mpT('pytania z błędem','questions with mistakes'),mpT('pytań z błędem','questions with mistakes'))+'</li>':'')+
+    (c.dg?'<li>'+mpT('Test na start: ','Starting test: ')+(c.dg.o?mpT('✓ dobrze','✓ correct'):mpT('✗ błąd','✗ wrong'))+'</li>':'')+'</ul><div class="mp-sh-b">'+
+    (mpRefs(t).length?'<button type="button" class="go" data-ses="'+t.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button>':'')+
+    ((t.tm||[]).length?'<button type="button" class="ghost" data-tm="'+t.tm[0]+'">'+mpT('📖 Teoria','📖 Theory')+'</button>':'')+
+    (t.kurs?'<button type="button" class="ghost" data-go="kurs">'+mpT('💻 Kurs Python','💻 Python course')+'</button>':'')+
+    (t.sql?'<button type="button" class="ghost" data-go="kurssql">'+mpT('💻 Kurs SQL','💻 SQL course')+'</button>':'')+
+    (t.kx?'<button type="button" class="ghost" data-go="kursxl">'+mpT('💻 Kurs Excela','💻 Excel course')+'</button>':'')+
+    (t.vis||[]).map(function(v){ return '<button type="button" class="ghost" data-vis="'+v+'">🔍 '+mpE(vzName(v))+'</button>'; }).join('')+'</div></div>';
+  document.body.appendChild(o); document.documentElement.classList.add('mp-sheet-on');
+  var close=function(){ mpSheetClose(); };
+  o.querySelector('.mp-sheet-bg').onclick=close; o.querySelector('.mp-sh-x').onclick=close;
+  o.querySelectorAll('[data-ses]').forEach(function(b){ b.onclick=function(){ close(); mpSesStart('ses',b.dataset.ses); }; });
+  o.querySelectorAll('[data-tm]').forEach(function(b){ b.onclick=function(){ close(); tmOpen(b.dataset.tm); }; });
+  o.querySelectorAll('[data-go]').forEach(function(b){ b.onclick=function(){ close(); select(b.dataset.go); }; });
+  o.querySelectorAll('[data-vis]').forEach(function(b){ b.onclick=function(){ close(); MP_VIS=b.dataset.vis; if(typeof current!=='undefined'&&current!=='mapa') select('mapa'); mpRender(); window.scrollTo({top:0}); }; });
+  o.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  var f=o.querySelector('.mp-sh-b button'); if(f) f.focus();
+}
+function mpHTML(){ return '<div class="lead"><span class="eyebrow">'+mpT('nauka indywidualna','individual study')+'</span><h2 class="h-task">'+mpT('Mapa opanowania','Mastery map')+'</h2><p class="h-sub">'+mpT('Co już umiesz, a co warto poćwiczyć — z Twoich odpowiedzi w całej aplikacji.','What you already know and what to practise — based on your answers across the app.')+'</p></div><div id="mp-root"></div>'; }
 function mpInit(){ mpRender(); }
 TASKS.push({id:'mapa',short:mpT('🧭 Mapa','🧭 Map'),title:mpT('Mapa opanowania','Mastery map'),sub:mpT('nauka indywidualna · co umiesz, co poćwiczyć','individual study · what you know, what to practise'),render:mpHTML,init:mpInit});
 function mpNav(){
@@ -14658,7 +14760,7 @@ function mpNav(){
   if(!on&&typeof current!=='undefined'&&current==='mapa'&&typeof select==='function') select('intro');
 }
 if(typeof indNav==='function'){ var mpIndNav=indNav; indNav=function(){ var r=mpIndNav.apply(this,arguments); try{ mpNav(); }catch(e){} return r; }; }
-if(typeof indBar==='function'){ var mpIndBar=indBar; indBar=function(id){ var r=mpIndBar.apply(this,arguments); if(id==='mapa'&&!MP_SES&&!MP_VIS) setTimeout(mpRender,0); return r; }; }
+if(typeof indBar==='function'){ var mpIndBar=indBar; indBar=function(id){ var r=mpIndBar.apply(this,arguments); if(id!=='mapa') mpSheetClose(); if(id==='mapa'&&!MP_SES&&!MP_VIS) setTimeout(mpRender,0); return r; }; }
 document.addEventListener('mi-ind-asg',function(){ mpNav(); });
 setTimeout(mpNav,0);
 /* karta planu na Starcie: link do mapy / testu */
@@ -14787,7 +14889,7 @@ function vzBinTree(nodes,pos,hl){
 }
 function vzRender(host,v){
   var D=VZ_DEF[v]; if(!D){ MP_VIS=null; return mpRender(); }
-  host.innerHTML='<div class="block vz"><div class="vz-top"><button type="button" class="ghost sm vz-back">'+mpT('← Mapa','← Map')+'</button><h3>🔍 '+mpE(vzName(v))+'</h3></div>'+
+  host.innerHTML='<div class="block vz"><div class="vz-top"><button type="button" class="ghost sm vz-back">'+mpT('← Wszystkie','← All')+'</button><h3>🔍 '+mpE(vzName(v))+'</h3></div>'+
     '<div class="vz-ctl">'+D.ctl()+'<button type="button" class="go sm vz-run">'+mpT('Pokaż kroki','Show steps')+'</button></div>'+
     '<div class="vz-stage" aria-live="polite"></div><p class="vz-cap"></p>'+
     '<div class="vz-nav"><button type="button" class="ghost sm" data-n="first" aria-label="'+mpT('Pierwszy krok','First step')+'">⏮</button><button type="button" class="ghost sm" data-n="prev">◀ '+mpT('Wstecz','Back')+'</button><span class="vz-k"></span><button type="button" class="go sm" data-n="next">'+mpT('Dalej','Next')+' ▶</button><button type="button" class="ghost sm" data-n="play">▶▶ '+mpT('Auto','Auto')+'</button></div></div>';
@@ -14797,13 +14899,102 @@ function vzRender(host,v){
   var run=function(){ stop(); try{ VZ.fr=D.build(par()); }catch(e){ VZ.fr=[{h:'',c:mpT('Nie udało się — sprawdź dane.','Something went wrong — check the data.')}]; } VZ.i=0; show(); };
   host.querySelector('.vz-run').onclick=run;
   host.querySelectorAll('.vz-in').forEach(function(i){ i.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); run(); } }); if(i.tagName==='SELECT') i.onchange=run; });
-  host.querySelector('.vz-back').onclick=function(){ stop(); MP_VIS=null; mpRender(); };
+  host.querySelector('.vz-back').onclick=function(){ stop(); MP_VIS=null; MP_TAB='vis'; mpRender(); };
   host.querySelectorAll('[data-n]').forEach(function(b){ b.onclick=function(){ var n=b.dataset.n;
     if(n==='play'){ if(VZ.tm){ stop(); return; } if(VZ.i>=VZ.fr.length-1) VZ.i=0; b.textContent='⏸ '+mpT('Stop','Stop'); VZ.tm=setInterval(function(){ if(VZ.i>=VZ.fr.length-1||!document.body.contains(b)){ stop(); return; } VZ.i++; show(); },1100); show(); return; }
     stop(); if(n==='first') VZ.i=0; if(n==='prev') VZ.i=Math.max(0,VZ.i-1); if(n==='next') VZ.i=Math.min(VZ.fr.length-1,VZ.i+1); show(); }; });
   run();
 }
 /* MI-MAP END */
+/* MI-TD START — „Na dziś” na Starcie i dolny pasek na telefonie (V81). Tylko uczeń z indywidualnym planem. */
+function tdOn(){ return typeof mpOn==='function'&&mpOn(); }
+function tdT(pl,en){ return (typeof MI_LANG!=='undefined'&&MI_LANG==='en')?en:pl; }
+function tdE(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function tdPl(n,one,few,many){ if(tdT(1,0)===0) return n===1?one:few; var d=n%10, h=n%100; return n===1?one:(d>=2&&d<=4&&(h<12||h>14)?few:many); }
+function tdMin(m){ return m?' <span class="fx-min">~'+Math.round(m)+' min</span>':''; }
+/* lista na dziś: powtórki → krok planu → test na start (jednorazowo) */
+function tdItems(){
+  var a=indAsg(), G=indG(), P=indPlan(a,G), N=P.rows.length, r=P.rows[P.cur], fin=!!(P.done===N&&N), act=(r&&!fin)?indNextAct(r):null, today=stDay(), out=[];
+  var n=0, did=0; try{ n=rvToday().length; did=(fxDay().n||0); }catch(e){ try{ n=rvDue().length; }catch(e2){} }
+  if(n) out.push({k:'rv', t:'<b>'+n+' '+tdPl(n,tdT('pytanie','question'),tdT('pytania','questions'),tdT('pytań','questions'))+tdT(' do powtórki',' to review')+'</b>', m:Math.max(2,n*1.2), go:function(){ select('powtorki'); }});
+  else if(did) out.push({k:'rv', done:1, t:tdT('Powtórki na dziś zrobione','Today’s reviews done')});
+  var S=indSt(G), doneToday=P.rows.filter(function(x){ var d=S.done[x.x.id]; return d&&stDay(new Date(d))===today; });
+  doneToday.forEach(function(x){ out.push({k:'les', done:1, t:tdT('Zaliczona lekcja ','Lesson completed: ')+x.x.n}); });
+  if(fin) out.push({k:'plan', done:1, t:tdT('Plan ukończony 🎉','Plan completed 🎉')});
+  else if(r){ var C=IND.cards[r.x.id];
+    if(act){ var m=0; try{ m=act.k==='step'?fxStepMin(C.steps[act.j]):(act.k==='chk'?3:10); }catch(e){}
+      out.push({k:'plan', t:'<b>'+tdT('Lekcja ','Lesson ')+r.x.n+'</b> · '+tdE(indActLabel(r,act)), sub:tdE(C.t), m:m, go:function(){ indDo(r,act); }}); }
+    else out.push({k:'plan', wait:1, t:'<b>'+tdT('Lekcja ','Lesson ')+r.x.n+'</b> · '+tdT('czeka na sprawdzenie przez nauczyciela','waiting for your teacher’s review'), sub:tdE(C.t), go:function(){ select('plan'); }}); }
+  var dg=null; try{ dg=mpCalc(mpG())._dg; }catch(e){}
+  if(!dg) out.push({k:'diag', t:'<b>'+tdT('Test na start','Starting test')+'</b> · '+tdT('jednorazowo, sprawdzi, co już umiesz','one-off, checks what you already know'), m:15, go:function(){ mpSesStart('diag'); }});
+  return {items:out, P:P, r:r, fin:fin};
+}
+function tdLine(I){
+  var act=(typeof actGet==='function')?actGet():{d:{},g:3}, today=stDay(), keys=Object.keys(act.d||{}).filter(function(k){ return act.d[k]&&k<today; }).sort(), last=keys[keys.length-1];
+  var gap=last?Math.round((Date.parse(today+'T12:00:00')-Date.parse(last+'T12:00:00'))/864e5):0, todo=I.items.filter(function(x){ return !x.done&&!x.wait; }), mins=todo.reduce(function(s,x){ return s+(x.m||0); },0);
+  var got=(typeof actWeek==='function'&&typeof stMonday==='function')?actWeek(act,stMonday(today)):0, L={mood:'calm', txt:''};
+  if(!todo.length){ L.mood='proud'; L.txt=tdT('Na dziś wszystko zrobione. Dobra robota.','Everything is done for today. Well done.'); }
+  else if(!act.d[today]&&gap>=4){ L.mood='sleepy'; L.txt=tdT('Minęło '+gap+' dni od ostatniej nauki. Zacznijmy spokojnie od pierwszego punktu.','It has been '+gap+' days since you last studied. Let us start gently with the first item.'); }
+  else L.txt=tdT('Dzień dobry. Oto plan na dziś','Hello. Here is your plan for today')+(mins?tdT(' — razem około ',' — about ')+Math.round(mins)+' min.':'.');
+  if(act.d[today]&&got===act.g&&got>0){ L.mood='happy'; L.txt+=' '+tdT('Cel tygodnia osiągnięty.','Weekly goal reached.'); }
+  try{ var dl=Math.round((Date.parse(BIT_EXAM+'T12:00:00')-Date.parse(today+'T12:00:00'))/864e5); if(dl>0&&dl<=30) L.txt+=' '+tdT('Do matury: '+dl+' '+(dl===1?'dzień':'dni')+'.','Days to the matura: '+dl+'.'); }catch(e){}
+  return L;
+}
+function tdWeek(){
+  if(typeof actGet!=='function') return '';
+  var v=actGet(), today=stDay(), mon=stMonday(today), got=actWeek(v,mon), days=tdT('pn wt śr cz pt so nd','Mo Tu We Th Fr Sa Su').split(' ');
+  return '<div class="td-week"><span class="td-wl">'+tdT('Twój tydzień','Your week')+' <b>'+got+' / '+v.g+'</b></span><span class="td-dots">'+days.map(function(d,i){ var k=stAddDays(mon,i); return '<i class="'+(v.d[k]?'on':'')+(k===today?' today':'')+'" title="'+k+'">'+d+'</i>'; }).join('')+'</span></div>';
+}
+function tdRender(){
+  var host=document.getElementById('panel-intro'); if(!host) return;
+  var box=document.getElementById('td-card'), on=tdOn();
+  document.body.classList.toggle('td-on',on);
+  if(!on){ if(box) box.remove(); return; }
+  var I=tdItems(), L=tdLine(I), next=I.items.filter(function(x){ return !x.done&&!x.wait; })[0], bit=typeof bitOn==='function'&&bitOn();
+  var a=indAsg(), N=I.P.rows.length;
+  var h=(bit?'<div class="td-voice">'+bitSVG(L.mood,64)+'<div class="bit-bub">'+L.txt+'</div></div>':'<div class="td-head"><span class="eyebrow">'+tdT('na dziś','today')+'</span><h3>'+L.txt+'</h3></div>')+
+    '<ol class="td-list">'+I.items.map(function(x,i){ return '<li class="td-it'+(x.done?' done':'')+(x.wait?' wait':'')+(x===next?' now':'')+(!x.done&&x.go?' td-click':'')+'" data-i="'+i+'"'+(!x.done&&x.go?' role="button" tabindex="0"':'')+'>'+
+      '<span class="td-ck" aria-hidden="true">'+(x.done?'✓':(x.wait?'⏳':(i+1)))+'</span><span class="td-tx">'+x.t+(x.m&&!x.done?tdMin(x.m):'')+(x.sub?'<small>'+x.sub+'</small>':'')+'</span>'+
+      (!x.done&&x.go?'<span class="td-chev" aria-hidden="true">›</span>':'')+'</li>'; }).join('')+'</ol>'+
+    '<div class="td-foot">'+(next?'<button type="button" class="go td-cont">▶ '+tdT('Kontynuuj','Continue')+'</button>':'<button type="button" class="ghost td-ses">⚡ '+tdT('10 minut na rozgrzewkę','10 minutes to warm up')+'</button>')+
+    '<span class="td-meta">'+tdT('Plan: ','Plan: ')+'<b>'+I.P.done+' / '+N+'</b>'+(I.P.late?' · <span class="ind-bad">'+tdT('zaległe: ','overdue: ')+I.P.late+'</span>':'')+' · <button type="button" class="linkbtn td-plan">'+tdT('zobacz plan','see the plan')+'</button></span></div>'+tdWeek();
+  if(!box){ box=document.createElement('div'); box.id='td-card'; box.className='block td-card'; }
+  if(host.firstElementChild!==box) host.insertBefore(box,host.firstElementChild);
+  box.innerHTML=h;
+  box.querySelectorAll('.td-click').forEach(function(li){ li.onclick=function(){ I.items[+li.dataset.i].go(); }; li.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); li.click(); } }; });
+  var c=box.querySelector('.td-cont'); if(c) c.onclick=function(){ next.go(); };
+  var s=box.querySelector('.td-ses'); if(s) s.onclick=function(){ if(typeof fxSesOpen==='function') fxSesOpen(); };
+  box.querySelector('.td-plan').onclick=function(){ select('plan'); };
+}
+/* --- dolny pasek na telefonie --- */
+var TD_BN=[['intro','house',['Dziś','Today']],['plan','calendar',['Plan','Plan']],['mapa','compass',['Mapa','Map']],['powtorki','repeat',['Powtórki','Reviews']],['_more','menu',['Więcej','More']]];
+var TD_IC={house:'<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  calendar:'<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+  compass:'<circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>',
+  repeat:'<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>',
+  menu:'<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>'};
+function tdBN(){
+  var on=tdOn(), nav=document.getElementById('td-bn');
+  document.body.classList.toggle('bn-on',on);
+  if(!on){ if(nav) nav.remove(); return; }
+  if(!nav){ nav=document.createElement('nav'); nav.id='td-bn'; nav.setAttribute('aria-label',tdT('Nawigacja planu','Plan navigation')); document.body.appendChild(nav);
+    nav.innerHTML=TD_BN.map(function(x){ return '<button type="button" data-bn="'+x[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+TD_IC[x[1]]+'</svg><span>'+tdT(x[2][0],x[2][1])+'</span>'+(x[0]==='powtorki'?'<b class="td-bdg" hidden></b>':'')+'</button>'; }).join('');
+    nav.querySelectorAll('[data-bn]').forEach(function(b){ b.onclick=function(){ var id=b.dataset.bn;
+      if(id==='_more'){ var m=document.querySelector('.mnav-btn'); if(m) m.click(); return; }
+      if(typeof current!=='undefined'&&current===id){ window.scrollTo({top:0,behavior:'smooth'}); return; } select(id); window.scrollTo({top:0}); }; }); }
+  var cur=typeof current!=='undefined'?current:'';
+  nav.querySelectorAll('[data-bn]').forEach(function(b){ var a=b.dataset.bn===cur; b.classList.toggle('on',a); if(a) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  var n=0; try{ n=rvToday().length; }catch(e){} var bd=nav.querySelector('.td-bdg'); if(bd){ bd.hidden=!n; bd.textContent=n; }
+}
+if(typeof indBar==='function'){ var tdIndBar=indBar; indBar=function(id){ var r=tdIndBar.apply(this,arguments); try{
+    if(id==='intro') tdRender(); tdBN();
+    var el=document.getElementById('ind-bar'); if(el&&tdOn()&&['mapa','powtorki'].indexOf(id)>=0&&window.matchMedia('(max-width:700px)').matches){ el.hidden=true; document.body.classList.remove('ind-hasbar'); }
+  }catch(e){ if(window.console) console.warn('MI-TD',e); } return r; }; }
+if(typeof rvBadge==='function'){ var tdRvBadge=rvBadge; rvBadge=function(){ var r=tdRvBadge.apply(this,arguments); try{ tdBN(); }catch(e){} return r; }; }
+document.addEventListener('mi-ind-asg',function(){ tdBN(); if(typeof current!=='undefined'&&current==='intro') setTimeout(tdRender,0); });
+window.addEventListener('focus',function(){ if(typeof current!=='undefined'&&current==='intro') tdRender(); });
+setTimeout(function(){ tdBN(); if(typeof current!=='undefined'&&current==='intro') tdRender(); },0);
+/* MI-TD END */
 /* ============================================================
    RUCHOMOŚĆ APLIKACJI — nawigacja / motyw
    ============================================================ */
