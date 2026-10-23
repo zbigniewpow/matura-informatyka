@@ -121,6 +121,14 @@ Tylko dla ucznia z indywidualnym planem (przydział „📅 Przydziel”). Bez z
 - **🔍 Krok po kroku** — 7 wizualizacji z własnymi danymi i przyciskami ◀ ▶ / Auto: sortowanie (bąbelkowe, przez wstawianie, przez wybieranie), wyszukiwanie binarne, drzewo rekurencji, drzewo BST z przejściami, kopiec, adres IP i maska, zamiana systemów.
 - **Nauczyciel** widzi wynik testu i mapę ucznia w panelu, po otwarciu jego planu („📅 …” w wierszu ucznia).
 
+## Prostszy widok ucznia z planem (od wersji V81)
+
+Bez zmian w Supabase. Dotyczy tylko ucznia z indywidualnym planem.
+
+- **Start → „Na dziś”** — jedna karta zamiast pięciu: krótka lista (powtórki → krok planu → test na start, jednorazowo) z czasem przy każdym punkcie, jeden przycisk „▶ Kontynuuj” do pierwszej niezrobionej rzeczy, postęp planu i mały pasek tygodnia. Gdy Bit jest włączony, to on wypowiada tę kartę.
+- **Mapa w trzech zakładkach:** Mapa · Test na start · Krok po kroku. Działy w zwijanych grupach (Do poprawy / W toku / Opanowane / Nie zaczęte), szczegóły działu w panelu z boku (na telefonie — arkusz od dołu).
+- **Dolny pasek na telefonie:** Dziś · Plan · Mapa · Powtórki (z liczbą na dziś) · Więcej (pełne menu). W Mapie i Powtórkach na telefonie nie ma już paska „Wróć do planu”.
+
 ## Ograniczenia
 
 - **Darmowy plan Supabase** usypia projekt po ok. 7 dniach bez ruchu (ferie, wakacje). Przywracasz go jednym kliknięciem w panelu Supabase; dane zostają.
