@@ -111,6 +111,16 @@ Bez zmian w Supabase i w Netlify — ustawienie zapisuje się w istniejącej tab
 - Uczeń może schować kartę do jutra (✕). Zmiana nauczyciela działa po odświeżeniu strony u ucznia (lub po minucie, gdy wraca do karty).
 - W wersji bez logowania Bit jest zawsze wyłączony (nie ma tam panelu nauczyciela).
 
+## Mapa opanowania, test na start i „Krok po kroku” (od wersji V80)
+
+Tylko dla ucznia z indywidualnym planem (przydział „📅 Przydziel”). Bez zmian w Supabase — wyniki zapisują się w postępie planu (`mi-ind-v1`), który już się synchronizuje.
+
+- **🧭 Mapa** — nowa zakładka w menu ucznia z planem (także w uproszczonym menu). 15 działów matury (12 w zakresie podstawowym) w kolorach: opanowane / w toku / do poprawy / nie zaczęte. Liczone z odpowiedzi w całej aplikacji: Ćwiczenia, Teoria, Bez komputera, kursy, powtórki.
+- **Test na start** — po jednym pytaniu z każdego działu (ok. 15 minut), z przyciskiem „Nie wiem”. Błędy z testu nie trafiają do powtórek. Link do testu jest też w karcie planu na Starcie.
+- **🎯 Ćwicz 5 pytań** — z wybranego działu, najpierw pytania z błędem. Mapa sama proponuje najsłabszy dział.
+- **🔍 Krok po kroku** — 7 wizualizacji z własnymi danymi i przyciskami ◀ ▶ / Auto: sortowanie (bąbelkowe, przez wstawianie, przez wybieranie), wyszukiwanie binarne, drzewo rekurencji, drzewo BST z przejściami, kopiec, adres IP i maska, zamiana systemów.
+- **Nauczyciel** widzi wynik testu i mapę ucznia w panelu, po otwarciu jego planu („📅 …” w wierszu ucznia).
+
 ## Ograniczenia
 
 - **Darmowy plan Supabase** usypia projekt po ok. 7 dniach bez ruchu (ferie, wakacje). Przywracasz go jednym kliknięciem w panelu Supabase; dane zostają.
