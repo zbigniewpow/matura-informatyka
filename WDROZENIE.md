@@ -101,6 +101,16 @@ Bez zmian w Supabase i w Netlify — wystarczy wgrać nowe pliki.
 - **„W skrócie” w Teorii (V78)** — każda z 83 sekcji Teorii do matury zaczyna się jednym zdaniem „W skrócie: …”, widocznym także wtedy, gdy sekcja jest zwinięta.
 - Wersja angielska dostała odpowiedniki tych zmian.
 
+## Bit — asystent ucznia (od wersji V79)
+
+Bez zmian w Supabase i w Netlify — ustawienie zapisuje się w istniejącej tabeli `assignments`.
+
+- **Domyślnie wyłączony.** Włączasz go dla całej klasy w **Panelu nauczyciela**, w karcie klasy: wiersz „Bit — asystent dla uczniów” → **Włącz** / **Wyłącz**. Uczniowie dodani później: przycisk „Włącz dla wszystkich”.
+- **👁 Podgląd u mnie** — włącza Bita tylko w Twojej przeglądarce, żeby zobaczyć, jak wygląda u ucznia.
+- **Co robi u ucznia:** karta na stronie Start z jedną propozycją na dziś (powtórki, plan, 10 minut, powrót po przerwie, odliczanie do matury 17.05.2027); krótki dymek po błędnej odpowiedzi (najwyżej raz na kilka błędów, nigdy w Sprawdzianie ani w trybie egzaminu); podpowiedź po drugiej nieudanej próbie w zadaniu kursu; podsumowanie po sesji „10 minut”; jego twarz w podpowiedziach „Pierwszy raz tutaj?”.
+- Uczeń może schować kartę do jutra (✕). Zmiana nauczyciela działa po odświeżeniu strony u ucznia (lub po minucie, gdy wraca do karty).
+- W wersji bez logowania Bit jest zawsze wyłączony (nie ma tam panelu nauczyciela).
+
 ## Ograniczenia
 
 - **Darmowy plan Supabase** usypia projekt po ok. 7 dniach bez ruchu (ferie, wakacje). Przywracasz go jednym kliknięciem w panelu Supabase; dane zostają.
