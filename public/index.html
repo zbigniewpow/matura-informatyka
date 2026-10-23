@@ -1529,10 +1529,10 @@ button .mi-ic,.tab .mi-ic{margin-right:.4em}
 .ind-card .ind-steps{padding-left:0!important;margin-left:0!important}
 /* tryb planu */
 .ind-alltog{margin-left:auto;border:1px dashed var(--line-strong,var(--line))!important}
-body.ind-focus #tabs>.tab[data-id]:not([data-id="intro"]):not([data-id="plan"]):not([data-id="powtorki"]):not([data-id="sprawdzian"]),
+body.ind-focus #tabs>.tab[data-id]:not([data-id="intro"]):not([data-id="plan"]):not([data-id="mapa"]):not([data-id="powtorki"]):not([data-id="sprawdzian"]),
 body.ind-focus #tabs>.tabsep,body.ind-focus #tabs>.tabdrop{display:none!important}
-body.ind-focus .mnav-sheet .mnav-grid>button[data-id]:not([data-id="intro"]):not([data-id="plan"]):not([data-id="powtorki"]):not([data-id="sprawdzian"]){display:none}
-body.ind-focus .mnav-sheet section:not(.ind-msec):not(:has(button[data-id="intro"],button[data-id="plan"],button[data-id="powtorki"],button[data-id="sprawdzian"])){display:none}
+body.ind-focus .mnav-sheet .mnav-grid>button[data-id]:not([data-id="intro"]):not([data-id="plan"]):not([data-id="mapa"]):not([data-id="powtorki"]):not([data-id="sprawdzian"]){display:none}
+body.ind-focus .mnav-sheet section:not(.ind-msec):not(:has(button[data-id="intro"],button[data-id="plan"],button[data-id="mapa"],button[data-id="powtorki"],button[data-id="sprawdzian"])){display:none}
 .ind-msec{margin-bottom:12px}.ind-alltog2{width:100%;font:inherit;font-weight:600;padding:10px 12px;border-radius:10px;border:1px dashed var(--line-strong,var(--line));background:var(--surface);color:var(--ink);cursor:pointer}
 body.ind-focus #panel-intro .hero-tag,body.ind-focus #panel-intro .hero-title,body.ind-focus #panel-intro .hero-lead,body.ind-focus #panel-intro .hero-cta,
 body.ind-focus #panel-intro .hero-meta,body.ind-focus #panel-intro .mi-loop,body.ind-focus #panel-intro .onb-welcome,body.ind-focus #panel-intro .stats,body.ind-focus #panel-intro .onb-guide{display:none!important}
@@ -1655,6 +1655,74 @@ details.tx-more>p,details.tx-more>div{margin-top:0}
 @media (prefers-reduced-motion:reduce){ #bit-toast{transition:none} }
 .bit-on .bit-ses #fx-quick:not(:has(.fx-phone)){display:none}
 /* MI-BIT-CSS END */
+/* MI-MAP-CSS */
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.mp-diag{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-left:4px solid var(--accent)}
+.mp-diag>div{display:flex;flex-direction:column;gap:4px;flex:1;min-width:220px}
+.mp-dline{margin:0 0 12px}
+.mp-rec{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.mp-legend{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px;color:var(--muted);margin:4px 0 10px}
+.mp-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:-8px}
+.mp-dot.ok,.mp-tile.st-ok .mp-bar i,.mp-chip.st-ok{background:#2f9e6a}
+.mp-dot.prog,.mp-tile.st-prog .mp-bar i,.mp-chip.st-prog{background:#d79a1f}
+.mp-dot.weak,.mp-tile.st-weak .mp-bar i,.mp-chip.st-weak{background:#d0485a}
+.mp-dot.none,.mp-chip.st-none{background:#b9b6c8}
+.mp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:10px;margin-bottom:14px}
+.mp-tile{min-width:0;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;gap:3px 10px;text-align:left;background:var(--card,#fff);border:1px solid var(--line,#e4e1ef);border-radius:14px;padding:12px;cursor:pointer;color:inherit;font:inherit;border-left-width:5px}
+.mp-tile.st-ok{border-left-color:#2f9e6a}.mp-tile.st-prog{border-left-color:#d79a1f}.mp-tile.st-weak{border-left-color:#d0485a}.mp-tile.st-none{border-left-color:#b9b6c8}
+.mp-tile.on{outline:2px solid var(--accent);outline-offset:1px}
+.mp-ti{grid-row:1/4;font-size:24px;line-height:1}
+.mp-tn{font-weight:600;font-size:14.5px;line-height:1.3}
+.mp-ts{font-size:12.5px;color:var(--muted)}
+.mp-bar{height:6px;border-radius:3px;background:color-mix(in srgb,var(--muted) 18%,transparent);overflow:hidden}
+.mp-bar i{display:block;height:100%;border-radius:3px}
+.mp-chip{display:inline-block;color:#fff;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;vertical-align:middle;margin-left:6px}
+.mp-facts{margin:6px 0 10px;padding-left:20px}.mp-facts li{margin:2px 0}
+.mp-shead{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.mp-shead .fx-sbar{flex:1;min-width:80px}
+.mp-dnote{margin:-4px 0 10px}
+.mp-ilink{margin:10px 0 0}
+.vz-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.vz-top h3{margin:0}
+.vz-ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:flex-end;margin:12px 0}
+.vz-ctl label{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted)}
+.vz-ctl input,.vz-ctl select{font:inherit;font-size:14.5px;padding:6px 8px;border:1px solid var(--line,#ddd);border-radius:8px;background:var(--card,#fff);color:inherit;min-width:220px}
+.vz-ctl .vz-sm{min-width:0;width:90px}
+.vz-stage{min-height:120px;overflow-x:auto;padding:6px 0}
+.vz-cap{min-height:2.6em;font-size:15px;line-height:1.5;margin:6px 0 10px}
+.vz-cnt{color:var(--muted);font-size:13px;margin-left:6px;white-space:nowrap}
+.vz-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.vz-k{font-size:13px;color:var(--muted);min-width:80px;text-align:center}
+.vz-bars{display:flex;gap:6px;align-items:flex-end;height:170px;padding:0 2px}
+.vz-bar{flex:1;max-width:56px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.vz-bar i{display:block;width:100%;background:color-mix(in srgb,var(--accent) 35%,transparent);border-radius:6px 6px 0 0;transition:height .25s}
+.vz-bar span{font-family:var(--font-mono,monospace);font-size:13.5px;margin-top:4px}
+.vz-bar.cmp i{background:#e6a817}.vz-bar.swp i{background:var(--accent)}.vz-bar.done i{background:#2f9e6a}
+.vz-cells{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.vz-cell{min-width:44px;border:1px solid var(--line,#ddd);border-radius:8px;padding:6px 4px;text-align:center;font-family:var(--font-mono,monospace)}
+.vz-cell small{display:block;font-size:10.5px;color:var(--muted)}
+.vz-cell.off{opacity:.35}.vz-cell.mid{background:#e6a817;color:#1d1b2c;border-color:#e6a817}.vz-cell.found{background:#2f9e6a;color:#fff;border-color:#2f9e6a}
+.vz-cell.lo,.vz-cell.hi,.vz-cell[class*=" lo"],.vz-cell[class*=" hi"]{border-color:var(--accent);border-width:2px}
+.vz-svgw{overflow-x:auto}
+.vz-svg{display:block;max-width:none}
+.vz-ln{stroke:color-mix(in srgb,var(--muted) 60%,transparent);stroke-width:1.6}
+.vz-nd rect,.vz-nd circle{fill:var(--card,#fff);stroke:color-mix(in srgb,var(--muted) 60%,transparent);stroke-width:1.6}
+.vz-nd text{font-family:var(--font-mono,monospace);font-size:12.5px;text-anchor:middle;dominant-baseline:middle;fill:currentColor}
+.vz-nd .vz-rv{font-size:11.5px;fill:#2f9e6a;font-weight:700}
+.vz-nd.act rect{stroke:var(--accent)}.vz-nd.cur rect,.vz-nd.cur circle{fill:#e6a817;stroke:#e6a817}.vz-nd.cur text{fill:#1d1b2c}
+.vz-nd.done rect{stroke:#2f9e6a}.vz-nd.path circle{stroke:var(--accent);stroke-width:3}
+.vz-out{font-family:var(--font-mono,monospace);margin-top:6px}
+.vz-ip{border-collapse:collapse;font-size:14px}.vz-ip th{text-align:left;padding:4px 10px 4px 0;font-weight:600;white-space:nowrap}.vz-ip td{padding:4px 10px 4px 0;white-space:nowrap}
+.vz-ip tr.hl td{font-weight:700}
+.vz-bits i,.vz-leg i{font-style:normal;font-family:var(--font-mono,monospace);padding:0 1px}.vz-bits b{margin:0 3px}
+.vz-bits i.n,.vz-leg i.n{color:var(--accent);font-weight:700}.vz-bits i.h,.vz-leg i.h{color:#c06a12}
+.vz-leg{font-size:12.5px;color:var(--muted)}
+.vz-div{border-collapse:collapse;font-family:var(--font-mono,monospace)}.vz-div th,.vz-div td{border:1px solid var(--line,#ddd);padding:5px 12px;text-align:center}.vz-div tr.hl td:last-child{background:color-mix(in srgb,var(--accent) 15%,transparent)}
+@media (max-width:700px){ .mp-grid{grid-template-columns:repeat(2,minmax(0,1fr))} .mp-tile{padding:10px 8px;gap:3px 7px} .mp-ti{font-size:20px} .mp-tn{font-size:13.5px;overflow-wrap:anywhere;hyphens:auto} .vz-ctl input{min-width:0;width:100%} .vz-ctl label{flex:1 1 100%} .vz-bars{height:130px} }
+.mp-teach{margin:12px 0;padding:10px 12px;border:1px solid var(--line,#e4e1ef);border-radius:12px}
+.mp-teach h4{margin:0 0 4px}
+.mp-tgrid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.mp-tchip{font-size:12.5px;border-radius:999px;padding:3px 10px;border:1px solid var(--line,#ddd);border-left-width:5px}
+.mp-tchip.st-ok{border-left-color:#2f9e6a}.mp-tchip.st-prog{border-left-color:#d79a1f}.mp-tchip.st-weak{border-left-color:#d0485a}.mp-tchip.st-none{border-left-color:#b9b6c8}
+/* MI-MAP-CSS END */
 
 /* reset dla samodzielnego pliku */
 html{-webkit-text-size-adjust:100%}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}
@@ -14400,6 +14468,342 @@ if(typeof indBar==='function'){ var bitIndBar=indBar; indBar=function(id){ var r
 document.addEventListener('mi-ind-asg',function(){ if(typeof window.MI_BIT==='boolean') bitLS('mi-bit-on',window.MI_BIT?'1':null); bitApply(); });
 (function(){ var go=function(){ bitApply(); }; if(document.readyState==='complete') setTimeout(go,0); else window.addEventListener('load',go); setTimeout(go,0); })();
 /* MI-BIT END */
+/* MI-MAP START — mapa opanowania, test na start, „Krok po kroku” (V80). Tylko uczeń z indywidualnym planem. */
+function mpEn(){ return typeof MI_LANG!=='undefined'&&MI_LANG==='en'; }
+function mpT(pl,en){ return mpEn()?en:pl; }
+function mpE(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function mpOn(){ try{ return !!(typeof indAsg==='function'&&indAsg()); }catch(e){ return false; } }
+var MP_T=[
+ {id:'sys', pl:'Systemy liczbowe', en:'Number systems', ic:'🔢', cw:[0,16], tm:['systemy'], vis:['sys'], pp:1},
+ {id:'rep', pl:'Reprezentacja danych i logika', en:'Data representation and logic', ic:'💾', cw:[10], tm:['reprezentacja','logika'], bw:['reprezentacja'], pp:1},
+ {id:'num', pl:'Algorytmy na liczbach', en:'Number algorithms', ic:'➗', cw:[1,2,12], kurs:[8], pp:1},
+ {id:'alg', pl:'Śledzenie i analiza algorytmów', en:'Tracing and analysing algorithms', ic:'🔍', cw:[3], tm:['analiza'], bw:['algorytmy'], pp:1},
+ {id:'rek', pl:'Rekurencja i programowanie dynamiczne', en:'Recursion and dynamic programming', ic:'🌀', cw:[11,14,17], kurs:[10], vis:['rek'], pp:0},
+ {id:'sort', pl:'Wyszukiwanie, sortowanie i złożoność', en:'Searching, sorting and complexity', ic:'📊', cw:[5], tm:['zlozonosc'], kurs:[9], vis:['sort','bin'], pp:1},
+ {id:'txt', pl:'Napisy i szyfrowanie', en:'Strings and encryption', ic:'🔐', cw:[4], tm:['kryptografia'], bw:['kryptografia'], kurs:[3,13], pp:1},
+ {id:'ds', pl:'Struktury danych, drzewa i grafy', en:'Data structures, trees and graphs', ic:'🌳', cw:[6], tm:['drzewa'], bw:['onp-web'], kurs:[11,14], vis:['bst','heap'], pp:0},
+ {id:'geo', pl:'Geometria i kombinatoryka', en:'Geometry and combinatorics', ic:'📐', cw:[13,15,18], pp:0},
+ {id:'py', pl:'Programowanie w Pythonie', en:'Programming in Python', ic:'🐍', kurs:[0,1,2,4,5,6,7,12,15,16], pred:'py', pp:1},
+ {id:'sql', pl:'Bazy danych i SQL', en:'Databases and SQL', ic:'🗄️', cw:[8], bw:['dane'], sql:1, pred:'sql', pp:1},
+ {id:'xl', pl:'Arkusz kalkulacyjny', en:'Spreadsheets', ic:'📗', cw:[7], kx:1, pp:1},
+ {id:'net', pl:'Sieci i Internet', en:'Networks and the Internet', ic:'🌐', cw:[9], tm:['adresy','siec','www'], bw:['protokoly','adresy','internet'], vis:['ip'], pp:1},
+ {id:'sec', pl:'Bezpieczeństwo i prawo', en:'Security and law', ic:'🛡️', tm:['bezpieczenstwo','prawo'], bw:['bezpieczenstwo','prawo'], pp:1},
+ {id:'hw', pl:'Komputer, grafika i multimedia', en:'Computers, graphics and media', ic:'🖥️', tm:['sprzet','grafika','kompresja'], bw:['urzadzenia','grafika','systemy-os'], pp:1}
+];
+try{ if(typeof LOOK_SVG!=='undefined'&&!LOOK_SVG.compass) LOOK_SVG.compass='<circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" />'; if(typeof LOOK_MOD_ICON!=='undefined') LOOK_MOD_ICON.mapa='compass'; }catch(e){}
+function mpPl(n,one,few,many){ if(mpEn()) return n===1?one:few; var d=n%10, h=n%100; return n===1?one:(d>=2&&d<=4&&(h<12||h>14)?few:many); }
+function mpName(t){ return mpEn()?t.en:t.pl; }
+function mpTopics(){ var a=mpOn()?indAsg():null; return MP_T.filter(function(t){ return !(a&&a.lvl==='PP'&&!t.pp); }); }
+/* --- pytania działu (odnośniki w formacie powtórek) --- */
+function mpRefs(t){
+  var r=[];
+  (t.cw||[]).forEach(function(s){ (CW_BANK[s]?CW_BANK[s].zadania:[]).forEach(function(_,i){ r.push('cw:'+s+':'+i); }); });
+  (t.tm||[]).forEach(function(id){ var d=TM_DATA.dzialy.filter(function(x){ return x.id===id; })[0]; if(!d) return;
+    d.pyt.forEach(function(_,i){ r.push('tq:'+id+':'+i); }); d.pf.forEach(function(_,i){ r.push('tp:'+id+':'+i); }); });
+  (t.bw||[]).forEach(function(id){ r.push('bw:'+id); });
+  if(t.pred&&typeof PRED_DATA!=='undefined'&&PRED_DATA[t.pred]){
+    var chs=t.pred==='py'?(t.kurs||[]):null;
+    Object.keys(PRED_DATA[t.pred]).forEach(function(id){ var ch=parseInt(id,10)-1; if(!chs||chs.indexOf(ch)>=0) r.push('pr:'+t.pred+':'+id); });
+  }
+  return r;
+}
+var MP_REF2T=null;
+function mpTopicOf(ref){ if(!MP_REF2T){ MP_REF2T={}; MP_T.forEach(function(t){ mpRefs(t).forEach(function(r){ MP_REF2T[r]=t.id; }); }); } return MP_REF2T[ref]||null; }
+/* --- stan opanowania; G(klucz) → obiekt (uczeń: localStorage, nauczyciel: dane z chmury) --- */
+function mpG(){ return function(k){ return miJGet(k,null); }; }
+function mpCalc(G){
+  var ans=((G('mi-ans-v1')||{}).cwiczenia||{}).q||{}, tm=(G('mi-teoria-v1')||{}).ok||{}, bk=(G('mi-bk-v1')||{}).w||{};
+  var rv=G('mi-rv-v1')||{}, rit=rv.it||{}, rm=rv.m||{}, S=G('mi-ind-v1')||{}, mp=S.mp||{}, pr=G('mi-pred-v1')||{};
+  var dgs=S.dg||{}, dk=Object.keys(dgs).sort(), dg=dk.length?dgs[dk[dk.length-1]]:null;
+  var kd=(G('mi-kurs-v1')||{}).done||{}, sd=(G('mi-kurssql-v1')||{}).done||{}, xd=(G('mi-kursxl-v1')||{}).done||{};
+  var okRef=function(ref){ if(rm[ref]) return true; var m=mp[ref]; if(m&&m.o) return true; var p=ref.split(':');
+    if(p[0]==='cw') return !!(ans[indCwOff(+p[1])+(+p[2])]||{}).ok;
+    if(p[0]==='tq') return !!tm[p[1]+':q'+p[2]]; if(p[0]==='tp') return !!tm[p[1]+':pf'+p[2]];
+    if(p[0]==='bw') return !!(bk[p[1]]||{}).ok;
+    if(p[0]==='pr') return !!((pr[p[1]]||{})[p.slice(2).join(':')]||{}).ok;
+    return false; };
+  var out={};
+  MP_T.forEach(function(t){
+    var refs=mpRefs(t), q={tot:refs.length, ok:0}, err=0, crs={tot:0, done:0};
+    refs.forEach(function(r){ var good=okRef(r); if(good) q.ok++; if(rit[r]||(mp[r]&&mp[r].o===0&&!good)) err++; });
+    if(t.kurs){ t.kurs.forEach(function(ch){ var R=KURS_DATA[ch]; if(!R) return; R.lekcje.forEach(function(l){ (l.zadania||[]).forEach(function(z){ crs.tot++; if(kd[z.id]) crs.done++; }); }); }); }
+    if(t.sql&&typeof KSQL_DATA!=='undefined') KSQL_DATA.kurs.forEach(function(R){ R.lekcje.forEach(function(l){ (l.zadania||[]).forEach(function(z){ crs.tot++; if(sd[z.id]) crs.done++; }); }); });
+    if(t.kx&&typeof KXL_DATA!=='undefined') KXL_DATA.lekcje.forEach(function(L){ (L.zadania||[]).forEach(function(z){ crs.tot++; if(xd[z.id]) crs.done++; }); });
+    var qr=q.tot?q.ok/q.tot:0, cr=crs.tot?crs.done/crs.tot:0, pct=Math.round(100*Math.max(qr,cr));
+    var d=dg&&dg.r&&dg.r[t.id]||null, started=q.ok+crs.done+err>0||!!d, st;
+    if(!started) st='none';
+    else if(err>=2||(d&&!d.o&&q.ok<3&&cr<.3)) st='weak';
+    else if(pct>=60&&err===0) st='ok';
+    else st='prog';
+    out[t.id]={q:q, err:err, crs:crs, pct:pct, st:st, dg:d};
+  });
+  out._dg=dg; return out;
+}
+/* --- zapis wyników z mapy i testu (synchronizowany w mi-ind-v1) --- */
+function mpRec(ref,ok){ var S=miJGet('mi-ind-v1',{})||{}; S.mp=S.mp||{}; S.mp[ref]={o:ok?1:0, t:Date.now()}; miJSet('mi-ind-v1',S); }
+var MP_NORV=false;
+if(typeof rvMark==='function'){ var mpRvMark=rvMark; rvMark=function(z,ok){ if(MP_NORV) return; return mpRvMark.apply(this,arguments); }; }
+/* --- test na start --- */
+function mpShuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function mpDiagRefs(){
+  var out=[];
+  mpTopics().forEach(function(t){
+    var refs=mpRefs(t), pick=null, easy=function(r){ var p=r.split(':'); if(p[0]==='cw'){ var z=CW_BANK[+p[1]].zadania[+p[2]]; return z.poziom!=='rozszerzony'&&z.typ!=='text'; } return p[0]==='tq'||p[0]==='pr'; };
+    var c=mpShuffle(refs.filter(function(r){ return easy(r)&&rvItem(r); }));
+    if(!c.length) c=mpShuffle(refs.filter(function(r){ return rvItem(r); }));
+    if(t.pred&&t.id==='py'){ var p=c.filter(function(r){ return /^pr:py:(1|2|3|4|5)\./.test(r); }); if(p.length) c=p; }
+    pick=c[0]; if(pick) out.push({ref:pick, t:t.id});
+  });
+  return out;
+}
+/* --- sesja (test albo ćwiczenie działu) w zakładce Mapa --- */
+var MP_SES=null;
+function mpSesStart(kind,tid){
+  var items;
+  if(kind==='diag') items=mpDiagRefs();
+  else { var t=MP_T.filter(function(x){ return x.id===tid; })[0], rit=(miJGet('mi-rv-v1',{})||{}).it||{}, C=mpCalc(mpG()), refs=mpRefs(t).filter(function(r){ return rvItem(r); });
+    var mp=(miJGet('mi-ind-v1',{})||{}).mp||{};
+    var due=refs.filter(function(r){ return rit[r]||(mp[r]&&mp[r].o===0); }), rest=mpShuffle(refs.filter(function(r){ return due.indexOf(r)<0; }));
+    items=mpShuffle(due).slice(0,3).concat(rest).slice(0,5).map(function(r){ return {ref:r, t:tid, rv:rit[r]?1:0}; }); }
+  MP_SES={kind:kind, tid:tid, items:items, i:0, ok:0, done:0, res:{}};
+  if(typeof current!=='undefined'&&current!=='mapa') select('mapa'); else mpRender();
+  window.scrollTo({top:0});
+}
+function mpSesRender(host){
+  var S=MP_SES, n=S.items.length;
+  if(S.i>=n) return mpSesEnd(host);
+  var head=S.kind==='diag'?mpT('🧭 Test na start','🧭 Starting test'):mpT('🎯 Ćwiczenie: ','🎯 Practice: ')+mpName(MP_T.filter(function(x){ return x.id===S.tid; })[0]);
+  host.innerHTML='<div class="block mp-shead"><b>'+mpE(head)+'</b><span>'+mpT('Pytanie ','Question ')+(S.i+1)+mpT(' z ',' of ')+n+'</span><span class="fx-sbar"><i style="width:'+Math.round(100*S.i/n)+'%"></i></span><button type="button" class="ghost sm mp-quit">'+mpT('Zakończ','Finish')+'</button></div>'+
+    (S.kind==='diag'&&S.i===0?'<p class="h-sub mp-dnote">'+mpT('Odpowiadaj tak, jak umiesz — „nie wiem” to też dobra informacja. Błędy z testu nie trafiają do powtórek.','Answer as best you can — “I don’t know” is useful information too. Mistakes in this test do not go to your reviews.')+'</p>':'')+
+    '<div class="mp-qhost"></div><div class="fx-snav"><button type="button" class="ghost mp-skip">'+mpT('Nie wiem →','I don’t know →')+'</button><button type="button" class="go mp-next" disabled>'+mpT('Dalej →','Next →')+'</button></div>';
+  var item=S.items[S.i], nx=host.querySelector('.mp-next'), sk=host.querySelector('.mp-skip');
+  var fin=function(ok){ S.done++; if(ok) S.ok++; S.res[item.t]={o:ok?1:0, ref:item.ref}; mpRec(item.ref,ok); };
+  MP_NORV=S.kind==='diag';
+  var card=fxCard(item,S.i,n,function(ok){ MP_NORV=false; fin(ok); nx.disabled=false; sk.hidden=true; nx.focus(); });
+  MP_NORV=false;
+  if(!card){ S.i++; return mpSesRender(host); }
+  if(S.kind==='diag'){ var b=card.querySelector('.rp-chk'), oc=b.onclick; b.onclick=function(){ MP_NORV=true; try{ oc.apply(this,arguments); } finally{ MP_NORV=false; } }; }
+  host.querySelector('.mp-qhost').appendChild(card);
+  nx.onclick=function(){ S.i++; mpSesRender(host); window.scrollTo({top:0}); };
+  sk.onclick=function(){ fin(false); S.i++; mpSesRender(host); window.scrollTo({top:0}); };
+  host.querySelector('.mp-quit').onclick=function(){ S.i=n; mpSesRender(host); };
+}
+function mpSesEnd(host){
+  var S=MP_SES, h;
+  if(S.kind==='diag'){
+    var r={}; Object.keys(S.res).forEach(function(k){ r[k]={o:S.res[k].o}; });
+    var St=miJGet('mi-ind-v1',{})||{}; St.dg=St.dg||{}; St.dg[Date.now()]={ok:S.ok, n:S.items.length, r:r}; miJSet('mi-ind-v1',St);
+    var good=MP_T.filter(function(t){ return r[t.id]&&r[t.id].o; }).map(mpName), bad=MP_T.filter(function(t){ return r[t.id]&&!r[t.id].o; }).map(mpName);
+    h='<div class="block mp-end"><span class="eyebrow">'+mpT('test na start','starting test')+'</span><h3>'+mpT('Wynik: ','Score: ')+S.ok+' / '+S.items.length+'</h3>'+
+      (good.length?'<p><b>'+mpT('Już umiesz: ','You already know: ')+'</b>'+mpE(good.join(', '))+'</p>':'')+
+      (bad.length?'<p><b>'+mpT('Do nauki: ','To learn: ')+'</b>'+mpE(bad.join(', '))+'</p>':'')+
+      '<p class="h-sub">'+mpT('Wynik widzi też nauczyciel — pomoże dobrać tempo planu. Mapa poniżej pokazuje, od czego zacząć.','Your teacher sees the result too and can adjust the pace of your plan. The map shows where to start.')+'</p>'+
+      '<div class="pill-row"><button type="button" class="go mp-back">'+mpT('Zobacz mapę →','See the map →')+'</button></div></div>';
+  } else {
+    h='<div class="block mp-end"><span class="eyebrow">'+mpT('gotowe','done')+'</span><h3>'+mpT('Dobrze: ','Correct: ')+S.ok+' / '+S.done+'</h3><p>'+
+      (S.done&&S.ok===S.done?mpT('Wszystko dobrze. Dział idzie w górę na mapie.','All correct. This topic moves up on your map.'):mpT('Pytania z błędem wrócą w powtórkach.','The questions you missed will come back in your reviews.'))+'</p>'+
+      '<div class="pill-row"><button type="button" class="go mp-again">'+mpT('Jeszcze 5 pytań','5 more questions')+'</button><button type="button" class="ghost mp-back">'+mpT('Wróć do mapy','Back to the map')+'</button></div></div>';
+  }
+  MP_SES=null; host.innerHTML=h;
+  var b=host.querySelector('.mp-back'); if(b) b.onclick=function(){ mpRender(); window.scrollTo({top:0}); };
+  var a=host.querySelector('.mp-again'); if(a) a.onclick=function(){ mpSesStart('ses',S.tid); };
+}
+/* --- widok mapy --- */
+var MP_OPEN=null, MP_VIS=null;
+function mpStLabel(st){ return {ok:mpT('opanowane','mastered'), prog:mpT('w toku','in progress'), weak:mpT('do poprawy','needs work'), none:mpT('nie zaczęte','not started')}[st]; }
+function mpRender(){
+  var P=typeof panels!=='undefined'&&panels.mapa; if(!P) return;
+  var host=P.querySelector('#mp-root'); if(!host) return;
+  if(!mpOn()){ host.innerHTML='<div class="block"><p>'+mpT('Mapa opanowania jest częścią nauki indywidualnej — pojawi się, gdy nauczyciel przydzieli Ci plan.','The mastery map is part of individual study — it appears when your teacher assigns you a plan.')+'</p></div>'; return; }
+  if(MP_SES) return mpSesRender(host);
+  if(MP_VIS) return vzRender(host,MP_VIS);
+  var C=mpCalc(mpG()), T=mpTopics(), dg=C._dg, h='';
+  if(!dg) h+='<div class="block mp-diag"><div><b>'+mpT('🧭 Test na start','🧭 Starting test')+'</b><span class="h-sub">'+T.length+mpT(' pytań, po jednym z każdego działu — ok. 15 minut. Sprawdzi, co już umiesz; wynik zobaczy też nauczyciel.',' questions, one from each topic — about 15 minutes. It checks what you already know; your teacher sees the result too.')+'</span></div><button type="button" class="go mp-dgo">'+mpT('Zacznij test','Start the test')+'</button></div>';
+  else h+='<p class="h-sub mp-dline">'+mpT('Test na start: ','Starting test: ')+'<b>'+dg.ok+' / '+dg.n+'</b> · <button type="button" class="linkbtn mp-dgo">'+mpT('powtórz test','retake the test')+'</button></p>';
+  var weak=T.filter(function(t){ return C[t.id].st==='weak'; }).sort(function(a,b){ return C[b.id].err-C[a.id].err; })[0]
+    || (dg?T.filter(function(t){ return C[t.id].dg&&!C[t.id].dg.o&&C[t.id].st!=='ok'; })[0]:null);
+  if(weak) h+='<div class="block mp-rec"><span>'+mpT('Proponuję zacząć od: ','I suggest starting with: ')+'<b>'+mpE(weak.ic+' '+mpName(weak))+'</b>'+(C[weak.id].err?' — '+C[weak.id].err+' '+mpPl(C[weak.id].err,mpT('pytanie z błędem czeka','question with a mistake is waiting'),mpT('pytania z błędem czekają','questions with mistakes are waiting'),mpT('pytań z błędem czeka','questions with mistakes are waiting'))+mpT(' na poprawę.','.'):'')+'</span><button type="button" class="go sm" data-ses="'+weak.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button></div>';
+  h+='<div class="mp-legend"><span class="mp-dot ok"></span>'+mpStLabel('ok')+'<span class="mp-dot prog"></span>'+mpStLabel('prog')+'<span class="mp-dot weak"></span>'+mpStLabel('weak')+'<span class="mp-dot none"></span>'+mpStLabel('none')+'</div>';
+  h+='<div class="mp-grid">'+T.map(function(t){ var c=C[t.id];
+    return '<button type="button" class="mp-tile st-'+c.st+(MP_OPEN===t.id?' on':'')+'" data-t="'+t.id+'"><span class="mp-ti">'+t.ic+'</span><span class="mp-tn">'+mpE(mpName(t))+'</span><span class="mp-ts">'+mpStLabel(c.st)+(c.err?' · '+c.err+' ✗':'')+'</span><span class="mp-bar"><i style="width:'+c.pct+'%"></i></span></button>'; }).join('')+'</div>';
+  if(MP_OPEN){ var t=MP_T.filter(function(x){ return x.id===MP_OPEN; })[0], c=C[MP_OPEN];
+    if(t){ h+='<div class="block mp-det"><h3>'+t.ic+' '+mpE(mpName(t))+' <span class="mp-chip st-'+c.st+'">'+mpStLabel(c.st)+'</span></h3><ul class="mp-facts">'+
+      (c.q.tot?'<li>'+mpT('Pytania: ','Questions: ')+'<b>'+c.q.ok+' / '+c.q.tot+'</b>'+mpT(' rozwiązane dobrze',' answered correctly')+'</li>':'')+
+      (c.crs.tot?'<li>'+mpT('Zadania w kursie: ','Course tasks: ')+'<b>'+c.crs.done+' / '+c.crs.tot+'</b></li>':'')+
+      (c.err?'<li>'+mpT('Do poprawy: ','To fix: ')+'<b>'+c.err+'</b> '+mpPl(c.err,mpT('pytanie z błędem','question with a mistake'),mpT('pytania z błędem','questions with mistakes'),mpT('pytań z błędem','questions with mistakes'))+'</li>':'')+
+      (c.dg?'<li>'+mpT('Test na start: ','Starting test: ')+(c.dg.o?mpT('✓ dobrze','✓ correct'):mpT('✗ błąd','✗ wrong'))+'</li>':'')+'</ul><div class="pill-row">'+
+      (mpRefs(t).length?'<button type="button" class="go sm" data-ses="'+t.id+'">'+mpT('🎯 Ćwicz 5 pytań','🎯 Practise 5 questions')+'</button>':'')+
+      ((t.tm||[]).length?'<button type="button" class="ghost sm" data-tm="'+t.tm[0]+'">'+mpT('📖 Teoria','📖 Theory')+'</button>':'')+
+      (t.kurs?'<button type="button" class="ghost sm" data-go="kurs">'+mpT('💻 Kurs Python','💻 Python course')+'</button>':'')+
+      (t.sql?'<button type="button" class="ghost sm" data-go="kurssql">'+mpT('💻 Kurs SQL','💻 SQL course')+'</button>':'')+
+      (t.kx?'<button type="button" class="ghost sm" data-go="kursxl">'+mpT('💻 Kurs Excela','💻 Excel course')+'</button>':'')+
+      (t.vis||[]).map(function(v){ return '<button type="button" class="ghost sm" data-vis="'+v+'">🔍 '+mpE(vzName(v))+'</button>'; }).join('')+'</div></div>'; } }
+  h+='<div class="block mp-vis"><h3>'+mpT('🔍 Krok po kroku','🔍 Step by step')+'</h3><p class="h-sub">'+mpT('Algorytm rozpisany na kroki: wpisz własne dane i przechodź strzałkami.','An algorithm split into steps: enter your own data and move with the arrows.')+'</p><div class="pill-row">'+
+    VZ_LIST.map(function(v){ return '<button type="button" class="ghost sm" data-vis="'+v+'">'+mpE(vzName(v))+'</button>'; }).join('')+'</div></div>';
+  host.innerHTML=h;
+  host.querySelectorAll('.mp-tile').forEach(function(b){ b.onclick=function(){ MP_OPEN=MP_OPEN===b.dataset.t?null:b.dataset.t; mpRender(); var d=host.querySelector('.mp-det'); if(d&&d.scrollIntoView) d.scrollIntoView({block:'nearest'}); }; });
+  host.querySelectorAll('.mp-dgo').forEach(function(b){ b.onclick=function(){ mpSesStart('diag'); }; });
+  host.querySelectorAll('[data-ses]').forEach(function(b){ b.onclick=function(){ mpSesStart('ses',b.dataset.ses); }; });
+  host.querySelectorAll('[data-tm]').forEach(function(b){ b.onclick=function(){ tmOpen(b.dataset.tm); }; });
+  host.querySelectorAll('[data-go]').forEach(function(b){ b.onclick=function(){ select(b.dataset.go); }; });
+  host.querySelectorAll('[data-vis]').forEach(function(b){ b.onclick=function(){ MP_VIS=b.dataset.vis; mpRender(); window.scrollTo({top:0}); }; });
+}
+function mpHTML(){ return '<div class="lead"><span class="eyebrow">'+mpT('nauka indywidualna','individual study')+'</span><h2 class="h-task">'+mpT('🧭 Mapa opanowania','🧭 Mastery map')+'</h2><p class="h-sub">'+mpT('Co już umiesz, a co warto poćwiczyć — z Twoich odpowiedzi w całej aplikacji.','What you already know and what to practise — based on your answers across the app.')+'</p></div><div id="mp-root"></div>'; }
+function mpInit(){ mpRender(); }
+TASKS.push({id:'mapa',short:mpT('🧭 Mapa','🧭 Map'),title:mpT('Mapa opanowania','Mastery map'),sub:mpT('nauka indywidualna · co umiesz, co poćwiczyć','individual study · what you know, what to practise'),render:mpHTML,init:mpInit});
+function mpNav(){
+  var on=mpOn();
+  try{ if(typeof directBtns!=='undefined'&&directBtns.mapa) directBtns.mapa.hidden=!on; }catch(e){}
+  document.querySelectorAll('.mnav-sheet button[data-id="mapa"]').forEach(function(b){ b.hidden=!on; });
+  if(!on&&typeof current!=='undefined'&&current==='mapa'&&typeof select==='function') select('intro');
+}
+if(typeof indNav==='function'){ var mpIndNav=indNav; indNav=function(){ var r=mpIndNav.apply(this,arguments); try{ mpNav(); }catch(e){} return r; }; }
+if(typeof indBar==='function'){ var mpIndBar=indBar; indBar=function(id){ var r=mpIndBar.apply(this,arguments); if(id==='mapa'&&!MP_SES&&!MP_VIS) setTimeout(mpRender,0); return r; }; }
+document.addEventListener('mi-ind-asg',function(){ mpNav(); });
+setTimeout(mpNav,0);
+/* karta planu na Starcie: link do mapy / testu */
+function mpIntro(){
+  var ii=document.getElementById('ind-intro'); if(!ii||!mpOn()||ii.querySelector('.mp-ilink')) return;
+  var dg=mpCalc(mpG())._dg, d=document.createElement('p'); d.className='h-sub mp-ilink';
+  d.innerHTML=dg?'<button type="button" class="linkbtn">'+mpT('🧭 Twoja mapa opanowania →','🧭 Your mastery map →')+'</button>':'<button type="button" class="linkbtn">'+mpT('🧭 Zrób test na start (ok. 15 min) — sprawdzi, co już umiesz →','🧭 Take the starting test (about 15 min) — it checks what you already know →')+'</button>';
+  d.querySelector('button').onclick=function(){ if(dg) select('mapa'); else mpSesStart('diag'); };
+  ii.appendChild(d);
+}
+if(typeof indIntro==='function'){ var mpIndIntro=indIntro; indIntro=function(){ var r=mpIndIntro.apply(this,arguments); try{ mpIntro(); }catch(e){} return r; }; }
+
+/* ===================== „Krok po kroku” — wizualizacje algorytmów ===================== */
+var VZ_LIST=['sort','bin','rek','bst','heap','ip','sys'];
+function vzName(v){ return {sort:mpT('Sortowanie','Sorting'), bin:mpT('Wyszukiwanie binarne','Binary search'), rek:mpT('Drzewo rekurencji','Recursion tree'), bst:mpT('Drzewo BST','BST'), heap:mpT('Kopiec','Heap'), ip:mpT('Adres IP i maska','IP address and mask'), sys:mpT('Zamiana systemów','Base conversion')}[v]||v; }
+function vzNums(s,max){ return String(s||'').split(/[\s,;]+/).map(function(x){ return parseInt(x,10); }).filter(function(x){ return !isNaN(x)&&Math.abs(x)<1e6; }).slice(0,max||12); }
+var VZ={i:0, fr:[], tm:null};
+var VZ_DEF={
+ sort:{ctl:function(){ return '<label>'+mpT('Liczby','Numbers')+' <input class="vz-in" data-k="a" value="7 3 9 1 5 4"></label><label>'+mpT('Algorytm','Algorithm')+' <select class="vz-in" data-k="m"><option value="b">'+mpT('bąbelkowe','bubble')+'</option><option value="i">'+mpT('przez wstawianie','insertion')+'</option><option value="s">'+mpT('przez wybieranie','selection')+'</option></select></label>'; },
+   build:function(p){ var a=vzNums(p.a,10), F=[], cmp=0, sw=0, done={}, fr=function(hl,cap,cls){ F.push({h:vzBars(a,hl,cls,done), c:cap+' <span class="vz-cnt">'+mpT('porównania: ','comparisons: ')+cmp+mpT(' · zamiany: ',' · swaps: ')+sw+'</span>'}); };
+     if(a.length<2) return [{h:'',c:mpT('Wpisz co najmniej 2 liczby.','Enter at least 2 numbers.')}];
+     fr([],mpT('Start: ','Start: ')+a.join(', '));
+     if(p.m==='b'){ for(var i=0;i<a.length-1;i++){ var any=false; for(var j=0;j<a.length-1-i;j++){ cmp++; fr([j,j+1],mpT('Porównuję ','Comparing ')+a[j]+' i '+a[j+1]+(a[j]>a[j+1]?mpT(' — zła kolejność, zamieniam.',' — wrong order, swapping.'):mpT(' — kolejność dobra.',' — order is fine.')),'cmp');
+         if(a[j]>a[j+1]){ var t=a[j]; a[j]=a[j+1]; a[j+1]=t; sw++; any=true; fr([j,j+1],mpT('Po zamianie.','After the swap.'),'swp'); } }
+         done[a.length-1-i]=1; fr([],mpT('Koniec przebiegu ','End of pass ')+(i+1)+mpT(': największa z pozostałych liczb jest na swoim miejscu.',': the largest remaining number is in place.'));
+         if(!any){ for(var k=0;k<a.length;k++) done[k]=1; fr([],mpT('W tym przebiegu nie było zamian — tablica jest posortowana.','No swaps in this pass — the array is sorted.')); break; } } }
+     else if(p.m==='i'){ done[0]=1; for(var i2=1;i2<a.length;i2++){ var x=a[i2], j2=i2-1; fr([i2],mpT('Biorę ','Taking ')+x+mpT(' i wstawiam w posortowaną część po lewej.',' and inserting it into the sorted part on the left.'),'cmp');
+         while(j2>=0){ cmp++; if(a[j2]>x){ a[j2+1]=a[j2]; a[j2]=x; sw++; fr([j2,j2+1],a[j2+1]+' > '+x+mpT(' — przesuwam w prawo.',' — shifting right.'),'swp'); j2--; } else { fr([j2,j2+1],a[j2]+' ≤ '+x+mpT(' — tu jest miejsce.',' — this is the place.'),'cmp'); break; } }
+         for(var k2=0;k2<=i2;k2++) done[k2]=1; }
+       fr([],mpT('Gotowe.','Done.')); }
+     else { for(var i3=0;i3<a.length-1;i3++){ var m=i3; for(var j3=i3+1;j3<a.length;j3++){ cmp++; fr([m,j3],mpT('Szukam minimum: porównuję ','Looking for the minimum: comparing ')+a[m]+' i '+a[j3]+'.','cmp'); if(a[j3]<a[m]) m=j3; }
+         if(m!==i3){ var t3=a[i3]; a[i3]=a[m]; a[m]=t3; sw++; } done[i3]=1; fr([i3,m],mpT('Minimum ','Minimum ')+a[i3]+mpT(' trafia na pozycję ',' goes to position ')+(i3+1)+'.','swp'); }
+       done[a.length-1]=1; fr([],mpT('Gotowe.','Done.')); }
+     return F; }},
+ bin:{ctl:function(){ return '<label>'+mpT('Liczby (posortuję je)','Numbers (I will sort them)')+' <input class="vz-in" data-k="a" value="3 8 12 15 21 27 33 40 46 52 61"></label><label>'+mpT('Szukam','Looking for')+' <input class="vz-in vz-sm" data-k="x" value="33"></label>'; },
+   build:function(p){ var a=vzNums(p.a,16).sort(function(x,y){ return x-y; }), x=parseInt(p.x,10), F=[], lo=0, hi=a.length-1, k=0;
+     if(!a.length||isNaN(x)) return [{h:'',c:mpT('Wpisz liczby i szukaną wartość.','Enter numbers and a value to find.')}];
+     F.push({h:vzCells(a,{}),c:mpT('Tablica jest posortowana. Szukam ','The array is sorted. Looking for ')+x+'.'});
+     while(lo<=hi){ var m=Math.floor((lo+hi)/2); k++; var L={}; for(var i=0;i<a.length;i++) if(i<lo||i>hi) L[i]='off'; L[lo]=(L[lo]||'')+' lo'; L[hi]=(L[hi]||'')+' hi'; L[m]='mid';
+       F.push({h:vzCells(a,L),c:mpT('Krok ','Step ')+k+': lo='+lo+', hi='+hi+', mid=⌊(lo+hi)/2⌋='+m+'. a[mid]='+a[m]+(a[m]===x?mpT(' — znaleziono!',' — found!'):(a[m]<x?' < '+x+mpT(' → szukam w prawej połowie.',' → search the right half.'):' > '+x+mpT(' → szukam w lewej połowie.',' → search the left half.')))});
+       if(a[m]===x){ L={}; L[m]='found'; F.push({h:vzCells(a,L),c:mpT('Wynik: indeks ','Result: index ')+m+mpT(' po ',' after ')+k+mpT(' porównaniach (najwyżej ⌊log₂ n⌋+1 = ',' comparisons (at most ⌊log₂ n⌋+1 = ')+(Math.floor(Math.log2(a.length))+1)+').'}); return F; }
+       if(a[m]<x) lo=m+1; else hi=m-1; }
+     F.push({h:vzCells(a,{}),c:mpT('lo > hi — liczby ','lo > hi — ')+x+mpT(' nie ma w tablicy (',' is not in the array (')+k+mpT(' porównań).',' comparisons).')}); return F; }},
+ rek:{ctl:function(){ return '<label>'+mpT('Funkcja','Function')+' <select class="vz-in" data-k="f"><option value="fib">fib(n)</option><option value="sil">'+mpT('silnia(n)','factorial(n)')+'</option><option value="pot">'+mpT('potęga(a, n) — szybka','power(a, n) — fast')+'</option></select></label><label>n <input class="vz-in vz-sm" data-k="n" value="5"></label>'; },
+   build:function(p){ var n=Math.max(0,Math.min(parseInt(p.n,10)||0,p.f==='fib'?6:(p.f==='sil'?8:40))), nodes=[], ev=[];
+     var call=function(lab,par,fn){ var id=nodes.length; nodes.push({l:lab,p:par,v:null,k:[]}); if(par>=0) nodes[par].k.push(id); ev.push(['in',id]); var v=fn(id); nodes[id].v=v; ev.push(['out',id]); return v; };
+     var fib=function(k,par){ return call('fib('+k+')',par,function(id){ return k<2?k:fib(k-1,id)+fib(k-2,id); }); };
+     var sil=function(k,par){ return call((mpEn()?'fact(':'silnia(')+k+')',par,function(id){ return k<=1?1:k*sil(k-1,id); }); };
+     var pot=function(k,par){ return call((mpEn()?'pow(2,':'pot(2,')+k+')',par,function(id){ if(k===0) return 1; var h=pot(Math.floor(k/2),id); return k%2?h*h*2:h*h; }); };
+     var res=p.f==='fib'?fib(n,-1):(p.f==='sil'?sil(n,-1):pot(n,-1));
+     var pos=vzLayout(nodes), seen={}, done={}, F=[], cnt=0;
+     ev.forEach(function(e){ var id=e[1]; if(e[0]==='in'){ seen[id]=1; cnt++; F.push({h:vzTree(nodes,pos,seen,done,id),c:mpT('Wywołanie ','Call ')+'<code>'+nodes[id].l+'</code>'+(nodes[id].k.length?'':mpT(' — przypadek bazowy.',' — base case.'))+' <span class="vz-cnt">'+mpT('wywołań: ','calls: ')+cnt+'</span>'}); }
+       else { done[id]=1; F.push({h:vzTree(nodes,pos,seen,done,id),c:'<code>'+nodes[id].l+'</code> '+mpT('zwraca ','returns ')+'<b>'+nodes[id].v+'</b>.'+' <span class="vz-cnt">'+mpT('wywołań: ','calls: ')+cnt+'</span>'}); } });
+     F.push({h:vzTree(nodes,pos,seen,done,-1),c:mpT('Wynik: ','Result: ')+'<b>'+res+'</b>. '+mpT('Łącznie ','In total ')+nodes.length+mpT(' wywołań.',' calls.')+(p.f==='fib'?mpT(' Zwróć uwagę, że te same wartości liczone są wiele razy — to dlatego naiwna rekurencja Fibonacciego jest wykładnicza.',' Note that the same values are computed many times — that is why naive recursive Fibonacci is exponential.'):'')});
+     return F; }},
+ bst:{ctl:function(){ return '<label>'+mpT('Wstawiane klucze','Keys to insert')+' <input class="vz-in" data-k="a" value="50 30 70 20 40 60 80 35"></label><label>'+mpT('Przejście','Traversal')+' <select class="vz-in" data-k="t"><option value="in">inorder</option><option value="pre">preorder</option><option value="post">postorder</option></select></label>'; },
+   build:function(p){ var a=vzNums(p.a,12), nodes=[], F=[], root=-1;
+     var draw=function(path,cur,cap,out){ var pos=vzLayoutBin(nodes,root), hl={}; (path||[]).forEach(function(i){ hl[i]='path'; }); if(cur>=0) hl[cur]='cur'; F.push({h:vzBinTree(nodes,pos,hl)+(out?'<div class="vz-out">'+out+'</div>':''),c:cap}); };
+     a.forEach(function(x){ var path=[], c=root;
+       if(root<0){ nodes.push({v:x,l:-1,r:-1}); root=0; draw([],0,mpT('Drzewo puste — ','Tree is empty — ')+x+mpT(' zostaje korzeniem.',' becomes the root.')); return; }
+       while(true){ path.push(c); var n=nodes[c];
+         if(x===n.v){ draw(path,-1,x+mpT(' już jest w drzewie — pomijam.',' is already in the tree — skipping.')); return; }
+         var dir=x<n.v?'l':'r';
+         draw(path,-1,mpT('Wstawiam ','Inserting ')+x+': '+x+(x<n.v?' < ':' > ')+n.v+(x<n.v?mpT(' → idę w lewo.',' → go left.'):mpT(' → idę w prawo.',' → go right.')));
+         if(n[dir]<0){ nodes.push({v:x,l:-1,r:-1}); n[dir]=nodes.length-1; draw(path,nodes.length-1,x+mpT(' trafia w puste miejsce jako ',' goes into the empty spot as the ')+(dir==='l'?mpT('lewe','left'):mpT('prawe','right'))+mpT(' dziecko ',' child of ')+n.v+'.'); return; }
+         c=n[dir]; } });
+     if(root<0) return [{h:'',c:mpT('Wpisz klucze.','Enter keys.')}];
+     var ord=[], walk=function(i){ if(i<0) return; var n=nodes[i]; if(p.t==='pre') ord.push(i); walk(n.l); if(p.t==='in') ord.push(i); walk(n.r); if(p.t==='post') ord.push(i); }; walk(root);
+     var nm={in:mpT('inorder: lewe, węzeł, prawe','inorder: left, node, right'), pre:mpT('preorder: węzeł, lewe, prawe','preorder: node, left, right'), post:mpT('postorder: lewe, prawe, węzeł','postorder: left, right, node')}[p.t];
+     ord.forEach(function(i,k){ draw(ord.slice(0,k),i,mpT('Przejście ','Traversal ')+nm+'.',ord.slice(0,k+1).map(function(j){ return nodes[j].v; }).join(', ')); });
+     if(p.t==='in') F[F.length-1].c+=mpT(' W BST inorder daje klucze rosnąco.',' In a BST inorder gives the keys in ascending order.');
+     return F; }},
+ heap:{ctl:function(){ return '<label>'+mpT('Wstawiane liczby (kopiec max)','Numbers to insert (max-heap)')+' <input class="vz-in" data-k="a" value="10 4 15 20 8 30 5"></label>'; },
+   build:function(p){ var a=vzNums(p.a,12), h=[], F=[], fr=function(hl,cap){ var nodes=h.map(function(v,i){ return {v:v,l:2*i+1<h.length?2*i+1:-1,r:2*i+2<h.length?2*i+2:-1}; }); F.push({h:(h.length?vzBinTree(nodes,vzLayoutBin(nodes,0),hl):'')+vzCells(h,(function(){ var L={}; Object.keys(hl).forEach(function(k){ L[k]=hl[k]==='cur'?'mid':'lo'; }); return L; })(),1),c:cap}); };
+     if(!a.length) return [{h:'',c:mpT('Wpisz liczby.','Enter numbers.')}];
+     a.forEach(function(x){ h.push(x); var i=h.length-1, hl={}; hl[i]='cur'; fr(hl,mpT('Dopisuję ','Appending ')+x+mpT(' na koniec tablicy (indeks ',' at the end of the array (index ')+i+').');
+       while(i>0){ var pa=Math.floor((i-1)/2), H={}; H[i]='cur'; H[pa]='path';
+         if(h[pa]<h[i]){ fr(H,h[i]+' > '+h[pa]+mpT(' (rodzic) → zamieniam w górę.',' (parent) → swap up.')); var t=h[pa]; h[pa]=h[i]; h[i]=t; i=pa; var H2={}; H2[i]='cur'; fr(H2,mpT('Po zamianie.','After the swap.')); }
+         else { fr(H,h[i]+' ≤ '+h[pa]+mpT(' (rodzic) → koniec, własność kopca zachowana.',' (parent) → stop, heap property holds.')); break; } } });
+     fr({0:'cur'},mpT('Gotowe. W korzeniu (indeks 0) jest maksimum: ','Done. The root (index 0) holds the maximum: ')+h[0]+mpT('. Dzieci elementu i to 2i+1 i 2i+2.','. The children of element i are 2i+1 and 2i+2.'));
+     return F; }},
+ ip:{ctl:function(){ return '<label>'+mpT('Adres/prefiks','Address/prefix')+' <input class="vz-in" data-k="a" value="192.168.10.77/26"></label>'; },
+   build:function(p){ var m=/^\s*(\d+)\.(\d+)\.(\d+)\.(\d+)\s*\/\s*(\d+)\s*$/.exec(p.a||''); if(!m) return [{h:'',c:mpT('Wpisz adres w postaci 192.168.10.77/26.','Enter an address like 192.168.10.77/26.')}];
+     var o=[+m[1],+m[2],+m[3],+m[4]], pr=+m[5]; if(o.some(function(x){ return x>255; })||pr>32) return [{h:'',c:mpT('Nieprawidłowy adres.','Invalid address.')}];
+     var bits=o.map(function(x){ return ('00000000'+x.toString(2)).slice(-8); }).join(''), mask='', net='', bc='';
+     for(var i=0;i<32;i++){ mask+=i<pr?'1':'0'; net+=i<pr?bits[i]:'0'; bc+=i<pr?bits[i]:'1'; }
+     var dec=function(b){ return [0,8,16,24].map(function(k){ return parseInt(b.substr(k,8),2); }).join('.'); }, row=function(lab,b,d,cls){ return '<tr class="'+(cls||'')+'"><th>'+lab+'</th><td class="vz-bits">'+[0,8,16,24].map(function(k){ return b.substr(k,8).split('').map(function(c,j){ return '<i class="'+((k+j)<pr?'n':'h')+'">'+c+'</i>'; }).join(''); }).join('<b>.</b>')+'</td><td>'+d+'</td></tr>'; };
+     var hosts=pr>=31?(pr===32?1:2):Math.pow(2,32-pr)-2, F=[], tb=function(rows){ return '<table class="vz-ip">'+rows.join('')+'</table><p class="vz-leg"><i class="n">1</i> '+mpT('część sieci','network part')+' &nbsp; <i class="h">1</i> '+mpT('część hosta','host part')+'</p>'; };
+     var r1=row(mpT('adres','address'),bits,o.join('.')), r2=row(mpT('maska','mask'),mask,dec(mask)+' (/'+pr+')'), r3=row(mpT('sieć','network'),net,dec(net),'hl'), r4=row(mpT('rozgłoszeniowy','broadcast'),bc,dec(bc),'hl');
+     F.push({h:tb([r1]),c:mpT('Każdy oktet zapisuję na 8 bitach.','I write each octet as 8 bits.')});
+     F.push({h:tb([r1,r2]),c:mpT('Maska /','Mask /')+pr+mpT(' to ',' means ')+pr+mpT(' jedynek, potem zera.',' ones followed by zeros.')});
+     F.push({h:tb([r1,r2,r3]),c:mpT('Adres sieci = adres AND maska: bity hosta zerujemy.','Network address = address AND mask: the host bits become 0.')});
+     F.push({h:tb([r1,r2,r3,r4]),c:mpT('Adres rozgłoszeniowy: bity hosta ustawiamy na 1.','Broadcast address: the host bits become 1.')});
+     F.push({h:tb([r1,r2,r3,r4]),c:mpT('Bitów hosta: ','Host bits: ')+(32-pr)+mpT('. Hostów: 2^','. Hosts: 2^')+(32-pr)+' − 2 = <b>'+hosts+'</b>'+(pr<31?mpT(' (od ',' (from ')+dec(net.slice(0,31)+'1')+mpT(' do ',' to ')+dec(bc.slice(0,31)+'0')+').':'.')});
+     return F; }},
+ sys:{ctl:function(){ return '<label>'+mpT('Liczba dziesiętna','Decimal number')+' <input class="vz-in vz-sm" data-k="n" value="77"></label><label>'+mpT('na system','to base')+' <select class="vz-in" data-k="p"><option>2</option><option>3</option><option>8</option><option>16</option></select></label>'; },
+   build:function(p){ var n=Math.max(0,Math.min(parseInt(p.n,10)||0,1e6)), b=parseInt(p.p,10)||2, rows=[], F=[], dig='0123456789ABCDEF', x=n;
+     var tb=function(k,read){ return '<table class="vz-div"><tr><th>n</th><th>n div '+b+'</th><th>n mod '+b+'</th></tr>'+rows.slice(0,k).map(function(r,i){ return '<tr'+(read&&i>=rows.length-read?' class="hl"':'')+'><td>'+r[0]+'</td><td>'+r[1]+'</td><td><b>'+dig[r[2]]+'</b></td></tr>'; }).join('')+'</table>'; };
+     if(n===0) return [{h:'',c:'0 = 0<sub>'+b+'</sub>'}];
+     while(x>0){ rows.push([x,Math.floor(x/b),x%b]); x=Math.floor(x/b); }
+     rows.forEach(function(r,i){ F.push({h:tb(i+1),c:r[0]+' div '+b+' = '+r[1]+', '+r[0]+' mod '+b+' = <b>'+dig[r[2]]+'</b>'+(r[1]===0?mpT(' — doszliśmy do zera.',' — we reached zero.'):'.')}); });
+     var res=rows.map(function(r){ return dig[r[2]]; }).reverse().join('');
+     F.push({h:tb(rows.length,rows.length),c:mpT('Reszty czytam od dołu do góry: ','I read the remainders from the bottom up: ')+n+' = <b>'+res+'<sub>'+b+'</sub></b>.'});
+     return F; }}
+};
+function vzBars(a,hl,cls,done){ var mx=Math.max.apply(null,a.map(Math.abs).concat([1]));
+  return '<div class="vz-bars">'+a.map(function(v,i){ var c=hl.indexOf(i)>=0?(cls||'cmp'):(done[i]?'done':''); return '<div class="vz-bar '+c+'"><i style="height:'+Math.max(6,Math.round(100*Math.abs(v)/mx))+'%"></i><span>'+v+'</span></div>'; }).join('')+'</div>'; }
+function vzCells(a,L,idx){ return '<div class="vz-cells">'+a.map(function(v,i){ return '<div class="vz-cell '+(L[i]||'')+'"><b>'+v+'</b><small>'+i+'</small></div>'; }).join('')+'</div>'; }
+/* układ drzewa wywołań: liście kolejno w poziomie, rodzic nad środkiem dzieci */
+function vzLayout(nodes){ var pos={}, x=0, dep=function(id,d){ var n=nodes[id]; if(!n.k.length){ pos[id]={x:x++, y:d}; return; } n.k.forEach(function(k){ dep(k,d+1); }); var xs=n.k.map(function(k){ return pos[k].x; }); pos[id]={x:(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2, y:d}; }; if(nodes.length) dep(0,0); return pos; }
+function vzTree(nodes,pos,seen,done,cur){
+  var W=Math.max(1,Object.keys(pos).reduce(function(m,k){ return Math.max(m,pos[k].x); },0)+1), H=Object.keys(pos).reduce(function(m,k){ return Math.max(m,pos[k].y); },0)+1, cw=78, ch=62;
+  var sx=function(id){ return 20+pos[id].x*cw+cw/2; }, sy=function(id){ return 20+pos[id].y*ch+16; }, s='';
+  nodes.forEach(function(n,id){ if(n.p>=0&&seen[id]) s+='<line x1="'+sx(n.p)+'" y1="'+sy(n.p)+'" x2="'+sx(id)+'" y2="'+sy(id)+'" class="vz-ln"/>'; });
+  nodes.forEach(function(n,id){ if(!seen[id]) return; var c=id===cur?'cur':(done[id]?'done':'act');
+    s+='<g class="vz-nd '+c+'"><rect x="'+(sx(id)-36)+'" y="'+(sy(id)-14)+'" width="72" height="28" rx="8"/><text x="'+sx(id)+'" y="'+(sy(id)+1)+'">'+mpE(n.l)+'</text>'+(done[id]?'<text class="vz-rv" x="'+sx(id)+'" y="'+(sy(id)+24)+'">= '+n.v+'</text>':'')+'</g>'; });
+  return '<div class="vz-svgw"><svg class="vz-svg" viewBox="0 0 '+(W*cw+40)+' '+(H*ch+30)+'" width="'+(W*cw+40)+'">'+s+'</svg></div>';
+}
+function vzLayoutBin(nodes,root){ var pos={}, x=0, rec=function(i,d){ if(i<0) return; rec(nodes[i].l,d+1); pos[i]={x:x++, y:d}; rec(nodes[i].r,d+1); }; rec(root,0); return pos; }
+function vzBinTree(nodes,pos,hl){
+  var ks=Object.keys(pos), W=ks.length, H=ks.reduce(function(m,k){ return Math.max(m,pos[k].y); },0)+1, cw=50, ch=58, s='';
+  var sx=function(i){ return 20+pos[i].x*cw+cw/2; }, sy=function(i){ return 26+pos[i].y*ch; };
+  nodes.forEach(function(n,i){ if(!pos[i]) return; [n.l,n.r].forEach(function(c){ if(c>=0&&pos[c]) s+='<line x1="'+sx(i)+'" y1="'+sy(i)+'" x2="'+sx(c)+'" y2="'+sy(c)+'" class="vz-ln"/>'; }); });
+  nodes.forEach(function(n,i){ if(!pos[i]) return; s+='<g class="vz-nd '+(hl[i]||'')+'"><circle cx="'+sx(i)+'" cy="'+sy(i)+'" r="18"/><text x="'+sx(i)+'" y="'+(sy(i)+1)+'">'+n.v+'</text></g>'; });
+  return '<div class="vz-svgw"><svg class="vz-svg" viewBox="0 0 '+(W*cw+40)+' '+(H*ch+20)+'" width="'+(W*cw+40)+'">'+s+'</svg></div>';
+}
+function vzRender(host,v){
+  var D=VZ_DEF[v]; if(!D){ MP_VIS=null; return mpRender(); }
+  host.innerHTML='<div class="block vz"><div class="vz-top"><button type="button" class="ghost sm vz-back">'+mpT('← Mapa','← Map')+'</button><h3>🔍 '+mpE(vzName(v))+'</h3></div>'+
+    '<div class="vz-ctl">'+D.ctl()+'<button type="button" class="go sm vz-run">'+mpT('Pokaż kroki','Show steps')+'</button></div>'+
+    '<div class="vz-stage" aria-live="polite"></div><p class="vz-cap"></p>'+
+    '<div class="vz-nav"><button type="button" class="ghost sm" data-n="first" aria-label="'+mpT('Pierwszy krok','First step')+'">⏮</button><button type="button" class="ghost sm" data-n="prev">◀ '+mpT('Wstecz','Back')+'</button><span class="vz-k"></span><button type="button" class="go sm" data-n="next">'+mpT('Dalej','Next')+' ▶</button><button type="button" class="ghost sm" data-n="play">▶▶ '+mpT('Auto','Auto')+'</button></div></div>';
+  var par=function(){ var p={}; host.querySelectorAll('.vz-in').forEach(function(i){ p[i.dataset.k]=i.value; }); return p; };
+  var show=function(){ var f=VZ.fr[VZ.i]||{h:'',c:''}; host.querySelector('.vz-stage').innerHTML=f.h; host.querySelector('.vz-cap').innerHTML=f.c; host.querySelector('.vz-k').textContent=mpT('krok ','step ')+(VZ.i+1)+' / '+VZ.fr.length; };
+  var stop=function(){ clearInterval(VZ.tm); VZ.tm=null; var b=host.querySelector('[data-n="play"]'); if(b) b.textContent='▶▶ '+mpT('Auto','Auto'); };
+  var run=function(){ stop(); try{ VZ.fr=D.build(par()); }catch(e){ VZ.fr=[{h:'',c:mpT('Nie udało się — sprawdź dane.','Something went wrong — check the data.')}]; } VZ.i=0; show(); };
+  host.querySelector('.vz-run').onclick=run;
+  host.querySelectorAll('.vz-in').forEach(function(i){ i.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); run(); } }); if(i.tagName==='SELECT') i.onchange=run; });
+  host.querySelector('.vz-back').onclick=function(){ stop(); MP_VIS=null; mpRender(); };
+  host.querySelectorAll('[data-n]').forEach(function(b){ b.onclick=function(){ var n=b.dataset.n;
+    if(n==='play'){ if(VZ.tm){ stop(); return; } if(VZ.i>=VZ.fr.length-1) VZ.i=0; b.textContent='⏸ '+mpT('Stop','Stop'); VZ.tm=setInterval(function(){ if(VZ.i>=VZ.fr.length-1||!document.body.contains(b)){ stop(); return; } VZ.i++; show(); },1100); show(); return; }
+    stop(); if(n==='first') VZ.i=0; if(n==='prev') VZ.i=Math.max(0,VZ.i-1); if(n==='next') VZ.i=Math.min(VZ.fr.length-1,VZ.i+1); show(); }; });
+  run();
+}
+/* MI-MAP END */
 /* ============================================================
    RUCHOMOŚĆ APLIKACJI — nawigacja / motyw
    ============================================================ */
@@ -14470,7 +14874,7 @@ const dropMatura=mkDrop('Matura',[
 const dropEdytory=mkDrop(__('Edytory'),[{title:__('Edytory kodu w przeglądarce'), ids:['python','bazy'], names:{python:__('Edytor Python'), bazy:__('Edytor SQL (bazy danych)')}}]);
 function tabSep(label){ const s=document.createElement('span');s.className='tabsep';s.setAttribute('aria-hidden','true');s.title=label;tabsEl.appendChild(s); }
 // ścieżka ucznia: na start → kursy → ćwiczenia i sprawdzian → matura → edytory
-mkTab('intro'); if(TASKS.some(t=>t.id==='plan')) mkTab('plan'); mkTab('start');
+mkTab('intro'); if(TASKS.some(t=>t.id==='plan')) mkTab('plan'); if(TASKS.some(t=>t.id==='mapa')) mkTab('mapa'); mkTab('start');
 tabSep(__('Kursy')); mkTab('kurs'); mkTab('kurssql'); mkTab('kursxl');
 tabSep(__('Ćwiczenia')); mkTab('cwiczenia'); mkTab('powtorki'); mkTab('sprawdzian');
 tabSep('Matura'); tabsEl.appendChild(dropMatura.wrap); tabsEl.appendChild(dropEdytory.wrap);
@@ -14961,6 +15365,24 @@ function bitTeachRows(){
 }
 var bitRT0=renderTeacher; renderTeacher=function(){ var r=bitRT0.apply(this,arguments); try{ bitTeachRows(); }catch(e){ if(window.console) console.warn('MI-BIT',e); } return r; };
 /* MI-BIT-CLOUD END */
+/* MI-MAP-CLOUD START — nauczyciel: test na start i mapa opanowania ucznia z planem */
+function mpTeach(){
+  if(typeof T==='undefined'||!T.indOpen||!T.indOpen.email||typeof mpCalc!=='function') return;
+  var box=document.getElementById('mi-ind-panel'); if(!box||box.querySelector('.mp-teach')) return;
+  var r=indRowOf(T.indOpen.email); if(!r||!r.p) return;
+  var G=indG4(r.p.user_id), C=mpCalc(G), dg=C._dg, A=T.asg[T.indOpen.email], lvl=A&&A.data&&A.data.lvl;
+  var Ts=MP_T.filter(function(t){ return !(lvl==='PP'&&!t.pp); });
+  var el=document.createElement('div'); el.className='mp-teach';
+  el.innerHTML='<h4>'+mpT('🧭 Mapa opanowania ucznia','🧭 Student mastery map')+'</h4>'+
+    '<p class="h-sub">'+(dg?mpT('Test na start: ','Starting test: ')+'<b>'+dg.ok+' / '+dg.n+'</b>'+
+      (function(){ var bad=Ts.filter(function(t){ return dg.r&&dg.r[t.id]&&!dg.r[t.id].o; }).map(mpName); return bad.length?mpT(' · do nauki: ',' · to learn: ')+mpE(bad.join(', ')):''; })()
+      :mpT('Uczeń nie zrobił jeszcze testu na start.','The student has not taken the starting test yet.'))+'</p>'+
+    '<div class="mp-tgrid">'+Ts.map(function(t){ var c=C[t.id]; return '<span class="mp-tchip st-'+c.st+'" title="'+mpE(mpStLabel(c.st))+(c.err?' · '+c.err+' ✗':'')+'">'+t.ic+' '+mpE(mpName(t))+' <b>'+c.pct+'%</b></span>'; }).join('')+'</div>'+
+    '<p class="h-sub">'+mpT('Kolor: zielony — opanowane, żółty — w toku, czerwony — do poprawy, szary — nie zaczęte.','Colour: green — mastered, yellow — in progress, red — needs work, grey — not started.')+'</p>';
+  box.appendChild(el);
+}
+var mpRT0=renderTeacher; renderTeacher=function(){ var r=mpRT0.apply(this,arguments); try{ mpTeach(); }catch(e){ if(window.console) console.warn('MI-MAP',e); } return r; };
+/* MI-MAP-CLOUD END */
 function renderTeacher(){
   var root=panels.nauczyciel; if(!root) return; totals();
   var t=INFO.teacher||{};
