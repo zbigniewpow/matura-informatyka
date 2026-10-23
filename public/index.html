@@ -1634,6 +1634,27 @@ details.tx-more>p,details.tx-more>div{margin-top:0}
 .tx-gist{margin:2px 0 10px;padding:6px 10px;border-left:3px solid var(--accent,#5b4fa0);background:color-mix(in srgb,var(--accent,#5b4fa0) 7%,transparent);border-radius:0 6px 6px 0;font-size:14.5px;line-height:1.5}
 .tm-sec.fx-closed .tx-gist{margin-bottom:4px}
 /* MI-TX-CSS END */
+/* MI-BIT-CSS */
+.bit-fig{--bit-body:#5b4fa0;--bit-dark:#463c86;--bit-scr:#211d3a;--bit-glow:#9ff0d0;flex:0 0 auto;display:block}
+.bit-card{display:flex;gap:14px;align-items:flex-start;position:relative}
+.bit-card .bit-main{flex:1;min-width:0}
+.bit-bub{position:relative;background:color-mix(in srgb,var(--accent,#5b4fa0) 9%,transparent);border-radius:14px;padding:10px 13px;font-size:15px;line-height:1.5}
+.bit-bub:before{content:"";position:absolute;left:-7px;top:18px;border:7px solid transparent;border-right-color:color-mix(in srgb,var(--accent,#5b4fa0) 9%,transparent);border-left:0}
+.bit-btns{margin-top:10px}
+.bit-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:15px;padding:2px 6px;border-radius:6px}
+.bit-card>.bit-x{position:absolute;top:10px;right:10px}
+.bit-card .bit-bub{margin-right:22px}
+.bit-say{display:flex;gap:12px;align-items:center;margin:0 0 12px}
+.bit-say .bit-bub{flex:1}
+#bit-toast{position:fixed;right:18px;bottom:18px;z-index:60;max-width:380px;display:flex;gap:10px;align-items:center;background:var(--card,#fff);color:var(--ink,inherit);border:1px solid var(--line,#e4e1ef);box-shadow:0 10px 30px rgba(40,30,90,.18);border-radius:14px;padding:10px 10px 10px 12px;font-size:14.5px;line-height:1.45;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+#bit-toast.show{opacity:1;transform:none;pointer-events:auto}
+#bit-toast .bit-tt{flex:1}
+.bit-row{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:10px 0 4px;padding:8px 10px;border:1px dashed var(--line,#e4e1ef);border-radius:12px}
+.bit-row .bit-rt{flex:1;min-width:220px;font-size:14px}
+@media (max-width:700px){ .bit-card{gap:10px} .bit-card .bit-fig{width:52px;height:52px} #bit-toast{left:12px;right:12px;bottom:12px;max-width:none} }
+@media (prefers-reduced-motion:reduce){ #bit-toast{transition:none} }
+.bit-on .bit-ses #fx-quick:not(:has(.fx-phone)){display:none}
+/* MI-BIT-CSS END */
 
 /* reset dla samodzielnego pliku */
 html{-webkit-text-size-adjust:100%}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}
@@ -14235,6 +14256,150 @@ function txRun(muts){
   if(document.body) start(); else document.addEventListener('DOMContentLoaded',start);
 })();
 /* MI-TX END */
+/* MI-BIT START — Bit, spokojny asystent ucznia (V79). Domyślnie wyłączony; włącza go nauczyciel w panelu (karta klasy). */
+var BIT_EXAM='2027-05-17'; /* matura z informatyki 2027, termin główny (harmonogram CKE) */
+function bitEn(){ return typeof MI_LANG!=='undefined'&&MI_LANG==='en'; }
+function bitT(pl,en){ return bitEn()?en:pl; }
+function bitLS(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} return null; }
+(function(){ var m=/[?&]bit=(0|1)\b/.exec(location.search); if(m) bitLS('mi-bit-preview',m[1]==='1'?'1':null); })();
+function bitOn(){ if(bitLS('mi-bit-preview')==='1') return true; if(typeof window.MI_BIT==='boolean') return window.MI_BIT; return bitLS('mi-bit-on')==='1'; }
+function bitE(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function bitDay(){ return typeof stDay==='function'?stDay():new Date().toISOString().slice(0,10); }
+function bitDiff(a,b){ return Math.round((Date.parse(b+'T12:00:00')-Date.parse(a+'T12:00:00'))/864e5); }
+function bitPl(n,one,few,many){ if(bitEn()) return n===1?one:few; var d=n%10, h=n%100; return n===1?one:(d>=2&&d<=4&&(h<12||h>14)?few:many); }
+/* --- postać --- */
+function bitSVG(mood,size,lit){
+  var C=lit?{b:'#5b4fa0',d:'#463c86',s:'#211d3a',g:'#9ff0d0',a:'#5b4fa0'}:{b:'var(--bit-body)',d:'var(--bit-dark)',s:'var(--bit-scr)',g:'var(--bit-glow)',a:'var(--bit-body)'};
+  var F='ui-monospace,Menlo,Consolas,monospace', g=C.g, st=function(d,w){ return '<path d="'+d+'" stroke="'+g+'" stroke-width="'+w+'" fill="none" stroke-linecap="round"/>'; };
+  var eyes={calm:'<rect x="35" y="40" width="7" height="11" rx="3.5" fill="'+g+'"/><rect x="58" y="40" width="7" height="11" rx="3.5" fill="'+g+'"/>',
+    happy:st('M33 48 q5-8 10 0',4)+st('M57 48 q5-8 10 0',4),
+    think:'<rect x="39" y="38" width="7" height="9" rx="3.5" fill="'+g+'"/><rect x="61" y="38" width="7" height="9" rx="3.5" fill="'+g+'"/>',
+    kind:st('M33 46 q5 4 10 0',4)+st('M57 46 q5 4 10 0',4),
+    proud:'<text x="38" y="52" font-family="'+F+'" font-size="15" font-weight="700" fill="'+g+'" text-anchor="middle">*</text><text x="62" y="52" font-family="'+F+'" font-size="15" font-weight="700" fill="'+g+'" text-anchor="middle">*</text>',
+    sleepy:st('M33 46 h10',4)+st('M57 46 h10',4)}[mood]||'';
+  var mouth={calm:st('M44 60 q6 4 12 0',3.5), happy:st('M42 58 q8 8 16 0',3.5), think:st('M45 61 h10',3.5), kind:st('M44 60 q6 4 12 0',3.5),
+    proud:'<path d="M41 57 q9 10 18 0 z" fill="'+g+'"/>', sleepy:'<circle cx="50" cy="61" r="2.6" fill="'+g+'"/>'}[mood]||'';
+  var t=function(x,y,s,c,o){ return '<text x="'+x+'" y="'+y+'" font-family="'+F+'" font-size="'+s+'" font-weight="700" fill="'+C.a+'" opacity="'+o+'">'+c+'</text>'; };
+  var extra={think:t(88,18,13,'?',1), proud:t(4,22,11,'1',.7)+t(88,30,11,'0',.7)+t(10,92,10,'1',.5), sleepy:t(84,20,12,'z',.8)+t(92,10,9,'z',.6),
+    kind:'<path d="M82 74 c-3-5 4-8 5-3 c1-5 8-2 5 3 l-5 5 z" fill="#e0719a" opacity=".85"/>'}[mood]||'';
+  return '<svg class="bit-fig" width="'+size+'" height="'+size+'" viewBox="0 0 100 100" aria-hidden="true" focusable="false"'+(lit?' xmlns="http://www.w3.org/2000/svg"':'')+'>'+
+    '<line x1="50" y1="14" x2="50" y2="22" stroke="'+C.b+'" stroke-width="3" stroke-linecap="round"/>'+
+    '<circle cx="50" cy="11" r="4.5" fill="'+(mood==='sleepy'?'#b9b3d8':g)+'" stroke="'+C.b+'" stroke-width="2.5"/>'+
+    '<rect x="13" y="22" width="74" height="60" rx="16" fill="'+C.b+'"/><rect x="9" y="42" width="6" height="16" rx="3" fill="'+C.d+'"/><rect x="85" y="42" width="6" height="16" rx="3" fill="'+C.d+'"/>'+
+    '<rect x="21" y="29" width="58" height="46" rx="11" fill="'+C.s+'"/>'+eyes+mouth+
+    '<rect x="38" y="82" width="24" height="6" rx="3" fill="'+C.d+'"/><rect x="30" y="87" width="40" height="7" rx="3.5" fill="'+C.b+'"/>'+extra+'</svg>';
+}
+/* ikona Bita w podpowiedziach „Pierwszy raz tutaj?” (CSS, bez zmian w DOM) */
+(function(){ try{ var css='.bit-on .onb-tip-i{font-size:0!important;width:46px;height:46px;flex:0 0 46px;background:url("data:image/svg+xml,'+encodeURIComponent(bitSVG('calm',46,true))+'") center/contain no-repeat}';
+  var s=document.createElement('style'); s.id='bit-tipcss'; s.textContent=css; (document.head||document.documentElement).appendChild(s); }catch(e){} })();
+/* --- dymek w rogu --- */
+var BIT_TT=null;
+function bitToast(mood,txt,ms){
+  if(!bitOn()) return; var el=document.getElementById('bit-toast');
+  if(!el){ el=document.createElement('div'); el.id='bit-toast'; el.setAttribute('role','status'); el.setAttribute('aria-live','polite'); document.body.appendChild(el); }
+  el.innerHTML=bitSVG(mood,44)+'<div class="bit-tt">'+txt+'</div><button type="button" class="bit-x" aria-label="'+bitT('Zamknij','Close')+'">✕</button>';
+  el.querySelector('.bit-x').onclick=function(){ el.classList.remove('show'); };
+  el.classList.add('show'); clearTimeout(BIT_TT); BIT_TT=setTimeout(function(){ el.classList.remove('show'); },ms||7000);
+}
+/* --- po błędnej odpowiedzi: najwyżej raz na kilka błędów --- */
+var BIT_W={n:0,t:0,i:0};
+function bitWrong(){
+  if(!bitOn()) return;
+  if(typeof current!=='undefined'&&current==='sprawdzian') return;
+  if(document.querySelector('.panel.exam-on:not([hidden])')) return;
+  BIT_W.n++; var now=Date.now();
+  if(!(BIT_W.n===1||BIT_W.n%4===0)||now-BIT_W.t<120000) return; BIT_W.t=now;
+  var L=[[ 'Nie szkodzi. To pytanie wróci jutro — wtedy pójdzie łatwiej.','No problem. This question will come back tomorrow — it will be easier then.'],
+    ['Błędy to część nauki. To pytanie wróci w powtórkach.','Mistakes are part of learning. This question will come back in your reviews.'],
+    ['Spokojnie. Przeczytaj wyjaśnienie — jutro to pytanie wróci.','Take it easy. Read the explanation — the question will come back tomorrow.']][BIT_W.i++%3];
+  bitToast('kind',bitT(L[0],L[1]));
+}
+if(typeof rvMark==='function'){ var bitRvMark=rvMark; rvMark=function(z,ok){ var r=bitRvMark.apply(this,arguments); if(!ok&&!(typeof miRestoring!=='undefined'&&miRestoring)) bitWrong(); return r; }; }
+if(typeof rvResult==='function'){ var bitRvResult=rvResult; rvResult=function(ref,ok){ var r=bitRvResult.apply(this,arguments); if(!ok) bitWrong(); return r; }; }
+/* --- druga nieudana próba w zadaniu kursu (Python, SQL, Excel) --- */
+var BIT_F={};
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('.k-chk,.kx-check'); if(!b||!bitOn()) return;
+  var t=b; while(t&&t!==document.body&&!(t.querySelector&&t.querySelector('.k-res,.kx-fb'))) t=t.parentElement;
+  if(!t||t===document.body) return;
+  var key=(typeof current!=='undefined'?current:'')+':'+(((t.querySelector('h3,h4')||{}).textContent)||'');
+  var n=0, iv=setInterval(function(){ n++; if(n>200){ clearInterval(iv); return; }
+    var res=t.querySelector('.k-res,.kx-fb'); if(b.disabled||!res||!(res.textContent||'').trim()) return; clearInterval(iv);
+    var ok=t.classList.contains('k-ok')&&!res.querySelector('.bad')||!!t.querySelector('.kx-fb.good')||!!res.querySelector('.good');
+    if(ok){ delete BIT_F[key]; return; }
+    BIT_F[key]=(BIT_F[key]||0)+1;
+    if(BIT_F[key]===2) bitToast('think',bitT('Spróbuj rozpisać to na kartce. Jeśli dalej nie wychodzi, podpowiedź podsunie strategię.','Try working it out on paper. If it still does not work, the hint will suggest a strategy.'),9000);
+  },400);
+},true);
+/* --- koniec sesji „10 minut” --- */
+if(typeof fxSesEnd==='function'){ var bitSesEnd=fxSesEnd; fxSesEnd=function(host){ var r=bitSesEnd.apply(this,arguments); try{ bitSesBub(host); }catch(e){} return r; }; }
+function bitSesBub(host){
+  if(!bitOn()||!host||typeof FX_SES==='undefined'||!FX_SES||!FX_SES.done) return;
+  var card=host.querySelector('.fx-end-card')||host; if(card.querySelector('.bit-say')) return;
+  var S=FX_SES, low=S.ok*2<S.done, txt;
+  if(S.ok===S.done) txt=bitT('Dobra robota: '+S.ok+' z '+S.done+'. Na dziś wystarczy.','Well done: '+S.ok+' out of '+S.done+'. That is enough for today.');
+  else if(low) txt=bitT('Dziś było trudniej: '+S.ok+' z '+S.done+'. Pytania z błędem wrócą jutro — wtedy pójdzie łatwiej.','Today was harder: '+S.ok+' out of '+S.done+'. The questions you missed will come back tomorrow — it will be easier then.');
+  else txt=bitT('Dobra robota: '+S.ok+' z '+S.done+'. Na dziś wystarczy — pytania z błędem wrócą jutro.','Well done: '+S.ok+' out of '+S.done+'. That is enough for today — the questions you missed will come back tomorrow.');
+  var d=document.createElement('div'); d.className='bit-say'; d.innerHTML=bitSVG(low?'kind':'proud',56)+'<div class="bit-bub">'+txt+'</div>';
+  card.insertBefore(d,card.firstChild);
+}
+/* --- karta na stronie startowej --- */
+function bitMsg(){
+  var today=bitDay(), act=(typeof actGet==='function')?actGet():{d:{},g:3}, keys=Object.keys(act.d||{}).filter(function(k){ return act.d[k]; }).sort();
+  var actToday=!!act.d[today], past=keys.filter(function(k){ return k<today; }), last=past[past.length-1], gap=last?bitDiff(last,today):0;
+  var n=0; try{ n=(typeof rvToday==='function'?rvToday():rvDue()).length; }catch(e){}
+  var mins=Math.max(2,Math.round(n*1.2)), plan=!!document.getElementById('ind-intro');
+  var nq=n+' '+bitPl(n,bitT('pytanie','question'),bitT('pytania','questions'),bitT('pytań','questions'));
+  var M={mood:'calm', txt:'', btn:[]};
+  if(!keys.length){ M.txt=bitT('Dzień dobry, jestem Bit. Będę podpowiadać, od czego zacząć. Jeśli dopiero zaczynasz programować, zajrzyj do zakładki „Od zera”.','Hello, I am Bit. I will suggest where to start. If you are new to programming, have a look at the “From scratch” tab.');
+    M.btn=[['start',bitT('Od zera →','From scratch →'),1],['kurs',bitT('Kurs Pythona','Python course')]]; }
+  else if(!actToday&&gap>=4){ M.mood='sleepy'; M.txt=bitT('Minęło '+gap+' dni od ostatniej nauki. Zacznijmy spokojnie: 10 minut, kilka pytań.','It has been '+gap+' days since you last studied. Let us start gently: 10 minutes, a few questions.');
+    M.btn=[['ses',bitT('Zacznij 10 minut','Start 10 minutes'),1]]; }
+  else if(n&&plan){ M.txt=bitT('Dzień dobry. Na dziś masz <b>'+nq+' do powtórki</b> i kolejny krok w planie. Proponuję zacząć od powtórek — to około '+mins+' min.','Hello. Today you have <b>'+nq+' to review</b> and the next step in your plan. I suggest starting with the reviews — about '+mins+' min.');
+    M.btn=[['rv',bitT('Zacznij powtórki','Start reviews'),1],['plan',bitT('Najpierw plan','Plan first')]]; }
+  else if(n){ M.txt=bitT('Dzień dobry. Na dziś masz <b>'+nq+' do powtórki</b> — to około '+mins+' min.','Hello. Today you have <b>'+nq+' to review</b> — about '+mins+' min.');
+    M.btn=[['rv',bitT('Zacznij powtórki','Start reviews'),1],['ses',bitT('10 minut','10 minutes')]]; }
+  else if(plan){ M.txt=bitT('Dzień dobry. Powtórki na dziś są zrobione. Następny krok czeka w Twoim planie.','Hello. Today\'s reviews are done. The next step is waiting in your plan.');
+    M.btn=[['plan',bitT('Przejdź do planu','Go to plan'),1]]; }
+  else { M.txt=bitT('Dzień dobry. Masz chwilę? 10 minut powtórek i nowych pytań wystarczy na dziś.','Hello. Got a moment? 10 minutes of reviews and new questions is enough for today.');
+    M.btn=[['ses',bitT('Zacznij 10 minut','Start 10 minutes'),1]]; }
+  if(actToday&&typeof actWeek==='function'&&typeof stMonday==='function'){ var got=actWeek(act,stMonday(today));
+    if(got===act.g&&got>0){ M.mood='happy'; M.txt+=' '+bitT('To już '+got+'. dzień nauki w tym tygodniu — cel osiągnięty.','That is day '+got+' of study this week — goal reached.'); } }
+  var dl=bitDiff(today,BIT_EXAM);
+  if(dl===0){ M.txt=bitT('Dziś matura z informatyki. Spokojnie, zadanie po zadaniu. Powodzenia.','Today is the computer science matura. Stay calm, one task at a time. Good luck.'); M.btn=[]; }
+  else if(dl>0&&dl<=30){ M.txt+=' '+bitT('Do matury '+(dl===1?'został 1 dzień':'zostało '+dl+' dni')+'. Dobry moment na pełny arkusz w trybie egzaminu.','There '+(dl===1?'is 1 day':'are '+dl+' days')+' left until the matura. A good moment for a full exam paper in exam mode.');
+    M.btn=M.btn.slice(0,1).concat([['ark',bitT('Arkusz maturalny','Exam paper')]]); }
+  return M;
+}
+function bitGo(a){
+  if(a==='rv') select('powtorki');
+  else if(a==='ses'){ if(typeof fxSesOpen==='function') fxSesOpen(); else select('powtorki'); }
+  else if(a==='plan'){ var b=document.querySelector('#ind-intro button.go'); if(b) b.click(); else select('plan'); }
+  else if(a==='ark') select('maj2026');
+  else select(a);
+}
+function bitStart(){
+  var P=typeof panels!=='undefined'&&panels.intro, box=document.getElementById('bit-hello');
+  if(!P||!bitOn()||bitLS('mi-bit-hide')===bitDay()){ if(box) box.remove(); if(P) P.classList.remove('bit-ses'); return; }
+  var M=bitMsg();
+  if(!box){ box=document.createElement('div'); box.id='bit-hello'; box.className='block bit-card'; }
+  if(P.firstElementChild!==box) P.insertBefore(box,P.firstElementChild);
+  box.innerHTML=bitSVG(M.mood,72)+'<div class="bit-main"><div class="bit-bub">'+M.txt+'</div>'+
+    (M.btn.length?'<div class="pill-row bit-btns">'+M.btn.map(function(b){ return '<button type="button" class="'+(b[2]?'go':'ghost')+' sm" data-bit="'+b[0]+'">'+bitE(b[1])+'</button>'; }).join('')+'</div>':'')+
+    '</div><button type="button" class="bit-x" title="'+bitT('Ukryj do jutra','Hide until tomorrow')+'" aria-label="'+bitT('Ukryj do jutra','Hide until tomorrow')+'">✕</button>';
+  box.querySelectorAll('[data-bit]').forEach(function(b){ b.onclick=function(){ bitGo(b.dataset.bit); }; });
+  box.querySelector('.bit-x').onclick=function(){ bitLS('mi-bit-hide',bitDay()); box.remove(); P.classList.remove('bit-ses'); };
+  P.classList.toggle('bit-ses',M.btn.some(function(b){ return b[0]==='ses'; }));
+}
+function bitApply(){
+  document.documentElement.classList.toggle('bit-on',bitOn());
+  if(!bitOn()){ var b=document.getElementById('bit-hello'); if(b) b.remove(); var t=document.getElementById('bit-toast'); if(t) t.classList.remove('show'); return; }
+  if(typeof current!=='undefined'&&current==='intro') bitStart();
+}
+if(typeof indBar==='function'){ var bitIndBar=indBar; indBar=function(id){ var r=bitIndBar.apply(this,arguments); if(id==='intro') setTimeout(bitStart,0); return r; }; }
+document.addEventListener('mi-ind-asg',function(){ if(typeof window.MI_BIT==='boolean') bitLS('mi-bit-on',window.MI_BIT?'1':null); bitApply(); });
+(function(){ var go=function(){ bitApply(); }; if(document.readyState==='complete') setTimeout(go,0); else window.addEventListener('load',go); setTimeout(go,0); })();
+/* MI-BIT END */
 /* ============================================================
    RUCHOMOŚĆ APLIKACJI — nawigacja / motyw
    ============================================================ */
@@ -14764,6 +14929,38 @@ function classRows(c){
     return {m:m,p:p,st:st,name:m.name||(p&&p.name)||m.email};
   }).sort(function(a,b){ return a.name.localeCompare(b.name,'pl'); });
 }
+/* MI-BIT-CLOUD START */
+/* --- panel nauczyciela (wersja z logowaniem): włączanie Bita dla klasy --- */
+function bitShare(c,on){
+  var rows=classRows(c), now=new Date().toISOString(), at=Date.now();
+  var ups=rows.map(function(r){ var old=(T.asg[r.m.email]&&T.asg[r.m.email].data)||{}, d=JSON.parse(JSON.stringify(old)); if(on) d.bit={on:1,at:at}; else delete d.bit; return {teacher_id:ME.id, email:r.m.email, data:d, updated_at:now}; });
+  if(!ups.length) return Promise.resolve(true);
+  return sb.from('assignments').upsert(ups,{onConflict:'teacher_id,email'}).then(function(r){
+    if(r.error){ T.msg=bitT('Nie udało się zmienić ustawienia Bita: ','Could not change the Bit setting: ')+r.error.message; return false; }
+    ups.forEach(function(u){ T.asg[u.email]={email:u.email, data:u.data, updated_at:u.updated_at}; }); return true; });
+}
+function bitTeachRows(){
+  var root=typeof panels!=='undefined'&&panels.nauczyciel; if(!root||typeof T==='undefined'||!T.classes) return;
+  root.querySelectorAll('.mi-class[data-id]').forEach(function(box){
+    if(box.querySelector('.bit-row')) return;
+    var c=T.classes.filter(function(x){ return String(x.id)===box.dataset.id; })[0]; if(!c) return;
+    var rows=classRows(c), n=rows.length, on=rows.filter(function(r){ var a=T.asg[r.m.email]; return a&&a.data&&a.data.bit&&a.data.bit.on; }).length;
+    var stt=!on?bitT('wyłączony','off'):(on===n?bitT('włączony','on'):bitT('włączony dla '+on+' z '+n+' uczniów','on for '+on+' of '+n+' students'));
+    var pv=bitLS('mi-bit-preview')==='1';
+    var el=document.createElement('div'); el.className='bit-row';
+    el.innerHTML=bitSVG(on?'happy':'sleepy',34)+'<div class="bit-rt"><b>'+bitT('Bit — asystent dla uczniów','Bit — student assistant')+':</b> '+stt+
+      '<span class="h-sub"> · '+bitT('podpowiada na stronie startowej, po błędach i po sesji','gives tips on the start page, after mistakes and after a session')+'</span></div>'+
+      (on<n&&n?'<button type="button" class="go sm" data-b="on">'+(on?bitT('Włącz dla wszystkich','Turn on for all'):bitT('Włącz','Turn on'))+'</button>':'')+
+      (on?'<button type="button" class="ghost sm" data-b="off">'+bitT('Wyłącz','Turn off')+'</button>':'')+
+      '<button type="button" class="ghost sm" data-b="pv">'+(pv?bitT('👁 Podgląd u mnie: wł.','👁 Preview for me: on'):bitT('👁 Podgląd u mnie','👁 Preview for me'))+'</button>';
+    var pr=box.querySelector('.pill-row'); if(pr) pr.parentNode.insertBefore(el,pr.nextSibling); else box.appendChild(el);
+    el.querySelectorAll('[data-b]').forEach(function(b){ b.onclick=function(){
+      if(b.dataset.b==='pv'){ bitLS('mi-bit-preview',pv?null:'1'); bitApply(); el.remove(); bitTeachRows(); return; }
+      b.disabled=true; bitShare(c,b.dataset.b==='on').then(function(){ renderTeacher(); }); }; });
+  });
+}
+var bitRT0=renderTeacher; renderTeacher=function(){ var r=bitRT0.apply(this,arguments); try{ bitTeachRows(); }catch(e){ if(window.console) console.warn('MI-BIT',e); } return r; };
+/* MI-BIT-CLOUD END */
 function renderTeacher(){
   var root=panels.nauczyciel; if(!root) return; totals();
   var t=INFO.teacher||{};
@@ -15113,6 +15310,7 @@ function indAsgFrom(D,old){
   a.mat=D.mat;
   if(D.tmode==='end'&&D.end) a.end=D.end; else a.pace=Math.max(1,Math.min(10,D.pace||1));
   if(old&&old.cls) a.cls=old.cls;
+  if(old&&old.bit) a.bit=old.bit;
   return a;
 }
 function indTable(email,a,G){
@@ -15159,8 +15357,8 @@ function indAct(a,b){
   if(a==='ind-close'){ T.indOpen=null; T.indDraft=null; renderTeacher(); }
   if(a==='ind-edit'){ T.indOpen.edit=true; T.indDraft=indDraftFrom(indA(email)&&indA(email).data); renderTeacher(); }
   if(a==='ind-del') confirmBtn(b,__('Na pewno usunąć? Kliknij ponownie'),function(){
-    var cl=T.asg[email]&&T.asg[email].data&&T.asg[email].data.cls;
-    if(cl){ indPut(email,{cls:cl}).then(function(){ T.indOpen=null; renderTeacher(); }); return; }
+    var dd=(T.asg[email]&&T.asg[email].data)||{}, cl=dd.cls||dd.bit;
+    if(cl){ var keep={}; if(dd.cls) keep.cls=dd.cls; if(dd.bit) keep.bit=dd.bit; indPut(email,keep).then(function(){ T.indOpen=null; renderTeacher(); }); return; }
     sb.from('assignments').delete().eq('teacher_id',ME.id).eq('email',email).then(function(r){ if(r.error) T.msg=r.error.message; delete T.asg[email]; T.indOpen=null; renderTeacher(); }); });
   if(a==='ind-prev'){
     var f=panels.nauczyciel.querySelector('form.ind-form'), data=f?indAsgFrom(indFormRead(f),T.asg[email]&&T.asg[email].data):(indA(email)&&indA(email).data);
@@ -15195,7 +15393,7 @@ function indLoad(){
   sb.from('assignments').select('data,updated_at').eq('email',INFO.email).order('updated_at',{ascending:false}).limit(20).then(function(r){
     var a=null, cl=null;
     ((!r.error&&r.data)||[]).forEach(function(x){ var d=x.data||{}; if(!a&&d.lvl) a=d; if(d.cls&&d.cls.lid&&(!cl||(d.cls.at||0)>(cl.at||0))) cl=d.cls; });
-    window.MI_IND_ASG=a; window.MI_CLS=cl; try{ document.dispatchEvent(new Event('mi-ind-asg')); }catch(e){}
+    window.MI_IND_ASG=a; window.MI_CLS=cl; window.MI_BIT=((!r.error&&r.data)||[]).some(function(x){ return !!(x.data&&x.data.bit&&x.data.bit.on); }); try{ document.dispatchEvent(new Event('mi-ind-asg')); }catch(e){}
     if(typeof lesStuRender==='function') lesStuRender();
   });
 }
